@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report auto="False"
+                id="report_project_tracking"
+                model="project.project"
+                name="project.tracking"
+                file="project_indicators/report/project_tracking.mako"
+                string="Project Tracking"
+                report_type="webkit"/>
+
+    </data>
+</openerp>
