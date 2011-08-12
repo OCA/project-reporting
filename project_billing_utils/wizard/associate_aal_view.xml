@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_associate_aal_to_invoice" model="ir.ui.view">
+        <field name="name">Associate To Invoice</field>
+        <field name="model">associate.aal.to.invoice</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+           <form string="Associate Analytic Lines">
+                <separator string="Associate Analytic Lines to invoice ?" colspan="4"/>
+                <field name="invoice_id"/>
+                <button special="cancel" string="_Cancel" icon="gtk-cancel" />
+                <button name="associate_aal" string="_Ok" type="object" icon="gtk-ok"/>
+            </form>
+        </field>
+    </record>
+    
+    <act_window name="Associate Analytic Lines"
+        res_model="associate.aal.to.invoice"
+        src_model="account.analytic.line"
+        key2="client_action_multi"
+        multi="True"
+        view_mode="form"
+        view_type="form"
+        target="new"
+        id="action_associate_invoice"/>
+        
+</data>
+</openerp>
