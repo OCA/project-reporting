@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
            <form string="Associate Analytic Lines">
                 <separator string="Associate Analytic Lines to invoice ?" colspan="4"/>
-                <field name="invoice_id"/>
+                <field name="invoice_id" domain="[('type','in','['out_invoice','in_invoice']')]"/>
                 <button special="cancel" string="_Cancel" icon="gtk-cancel" />
                 <button name="associate_aal" string="_Ok" type="object" icon="gtk-ok"/>
             </form>
