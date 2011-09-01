@@ -34,6 +34,7 @@ Add wizard to manage project and invoicing :
  - Get all invoice from Project (with recurssion in child account)
  - Get Analytic Lines from project (with recurssion in child account)
  - Get Analytic Lines from an invoice for controlling
+ - Crearte a blank invoice from project (with related infos)
  
     """,
     "version" : "1.4",
@@ -48,6 +49,7 @@ Add wizard to manage project and invoicing :
             "wizard/associate_aal_view.xml",
             "wizard/dissociate_aal_view.xml",
             "wizard/open_invoices_view.xml",
+            "wizard/blank_invoice_view.xml",
     ],
     "active": False,
     "installable": True

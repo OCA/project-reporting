@@ -25,4 +25,4 @@
 import associate_aal
 import dissociate_aal
 import open_invoices
-
+import blank_invoice
