@@ -13,15 +13,15 @@
                            text-align: center; }
 
         tr.last_row td {
-             border-bottom:1px solid black;
+             border-bottom:1px solid lightgrey;
         }
 
         table.tasks { border-collapse: collapse;
                       font-size: 11px; }
 
-        table.tasks tr th { border-bottom: 1px solid black; }
+        table.tasks tr th { border-bottom: 1px solid lightgrey; }
 
-        table.tasks tr td { border-bottom: 1px solid black; }
+        table.tasks tr td { border-bottom: 1px solid lightgrey; }
         tr.exceeded { color: red; }
         td.exceeded { font-weight: bold;
                       color: red;}
