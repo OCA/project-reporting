@@ -8,5 +8,23 @@
             src_model="project.project"
             view_mode="tree,form,calendar"
             view_type="form"/>
+            
+        
+            <!-- partner and contact required -->
+            <record id="edit_project" model="ir.ui.view">
+                <field name="name">project.project.form</field>
+                <field name="model">project.project</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="project.edit_project" />
+                <field name="arch" type="xml">
+                    <xpath expr="/form/notebook/page[@string='Billing']/field[@name='partner_id']" position="replace">
+                         <field colspan="4" name="partner_id" on_change="onchange_partner_id(partner_id)" required="1" select="1" string="Customer"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Billing']/field[@name='contact_id']" position="replace">
+                         <field domain="[('partner_id','=',partner_id)]" name="contact_id" required="1" string="Invoice Address"/>
+                    </xpath>
+                </field>
+            </record>
+        
     </data>
 </openerp>
