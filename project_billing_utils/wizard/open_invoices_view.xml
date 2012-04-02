@@ -22,7 +22,7 @@
         
         view_mode="form"
         target="new"
-        context="{'inv_type':'out_invoice'}"
+        context="{'inv_type':['out_invoice','in_refund']}"
         id="action_open_customer_invoice"/>
 
     <act_window name="Supplier Invoices"
@@ -32,7 +32,7 @@
    
         view_mode="form"
         target="new"
-        context="{'inv_type':'in_invoice'}"
+        context="{'inv_type':['in_invoice','out_refund']}"
         id="action_open_supplier_invoice"/>
 
              <!-- multi="True" -->
