@@ -43,7 +43,6 @@ This modules adds indicators on project :
 """,
      "website": "http://camptocamp.com",
      "depends" : ['project',
-                  'account_analytic_analysis',
                   'report_webkit'],
      "init_xml" : [],
      "demo_xml" : [],
