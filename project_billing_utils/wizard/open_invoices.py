@@ -33,7 +33,6 @@ class OpenInvoicesFromProject(orm.TransientModel):
         aa_obj = self.pool.get('project.project')
 
         active_ids = context.get('active_ids', False)
-        print str(active_ids)
         if isinstance(ids, list):
             req_id = ids[0]
         else:
