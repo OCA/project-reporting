@@ -26,11 +26,12 @@ class AssociateInvoice(orm.TransientModel):
     _description = 'Associate Analytic Lines'
     _columns = {
         'invoice_id': fields.many2one('account.invoice', 'Invoice', required=True),
-    }
+        }
 
     def associate_aal(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
+        # XXX if we check if context is None then active_model might not be in context
         aal_obj = self.pool.get(context['active_model'])
         aal_ids = context.get('active_ids', False)
         if isinstance(ids, list):
@@ -38,9 +39,10 @@ class AssociateInvoice(orm.TransientModel):
         else:
             req_id = ids
         current = self.browse(cr, uid, req_id, context=context)
-        aal_obj.write(cr, uid, aal_ids, {'invoice_id': current.invoice_id.id}, context=context)
+        aal_obj.write(cr, uid, aal_ids,
+                {'invoice_id': current.invoice_id.id},
+                context=context)
 
-        # view_id = self.pool.get('ir.ui.view').search(cursor, uid, [('name', '=', )])
         return {
             'domain': "[('id','in', [%s])]" % (current.invoice_id.id,),
             'name': 'Associated invoice',
@@ -50,7 +52,7 @@ class AssociateInvoice(orm.TransientModel):
             'view_id': False,
             'context': context,
             'type': 'ir.actions.act_window',
-        }
+            }
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
