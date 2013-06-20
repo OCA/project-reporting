@@ -51,5 +51,5 @@ This modules adds indicators on project :
                      'report.xml',
                      ],
      "active": False,
-     "installable": True
+     "installable": False,
 }

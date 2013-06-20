@@ -52,5 +52,5 @@ Add wizard to manage project and invoicing :
             "wizard/blank_invoice_view.xml",
     ],
     "active": False,
-    "installable": True
+    "installable": False,
 }
