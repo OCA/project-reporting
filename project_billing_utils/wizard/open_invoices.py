@@ -18,10 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import orm
 
-class OpenInvoicesFromProject(osv.osv_memory):
+class OpenInvoicesFromProject(orm.TransientModel):
     _name = 'open.invoice.from.project'
     _description = 'Open Invoices'
 
@@ -67,6 +66,5 @@ class OpenInvoicesFromProject(osv.osv_memory):
         result['domain'] = invoice_domain
         return result
 
-OpenInvoicesFromProject()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

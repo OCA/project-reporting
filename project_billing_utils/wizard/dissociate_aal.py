@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import orm
 
-class DissociateInvoice(osv.osv_memory):
+
+class DissociateInvoice(orm.TransientModel):
     _name = 'dissociate.aal.to.invoice'
     _description = 'Dissociate Analytic Lines'
 
@@ -42,7 +42,5 @@ class DissociateInvoice(osv.osv_memory):
         cr.execute("UPDATE account_analytic_line SET invoice_id = null WHERE id in (%s);"%(','.join(map(str, ids2))))
 
         return {}
-
-DissociateInvoice()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

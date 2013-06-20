@@ -18,15 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp.osv import orm, fields
 
-class account_analytic_account(osv.osv):
+
+class AccountAnalyticAccount(orm.Model):
     _inherit = 'account.analytic.account'
     _description = 'Analytic Account'
     _columns = {
         'project_ids': fields.one2many('project.project', 'analytic_account_id', 'Projects'),
     }
-
-account_analytic_account()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
