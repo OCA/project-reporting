@@ -33,20 +33,19 @@ Add wizard to manage project and invoicing :
  - Crearte a blank invoice from project (with related infos)
 
     ''',
-    'author' : 'Camptocamp',
+    'author': 'Camptocamp',
     'website': 'http://www.camptocamp.com',
-    'depends' : ['project', 'hr_timesheet_invoice'],
-    'data' : [
+    'depends': ['project', 'hr_timesheet_invoice'],
+    'data': [
         'invoice_view.xml',
         'project_view.xml',
         'wizard/associate_aal_view.xml',
         'wizard/dissociate_aal_view.xml',
         'wizard/open_invoices_view.xml',
         'wizard/blank_invoice_view.xml',
-    ],
-    'installable' : True,
-    'auto_install' : False,
-    'application' : False,
+        ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
