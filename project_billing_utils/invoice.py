@@ -28,14 +28,14 @@ class AccountInvoice(orm.Model):
         if context is None:
             context = {}
         if not context.has_key('special_search'):
-            return super(AccountInvoice,self).name_get(cr, uid, ids, context=context)
+            return super(AccountInvoice, self).name_get(cr, uid, ids, context=context)
         else:
             if not ids:
                 return []
             ## We will return value
             rest = []
-            for r in self.read(cr,uid,ids, ['number','partner_id','name'], context=context):
-                rest.append((r['id'],('%s - %s - %s'%(r['number'] or '',r['partner_id'][1],r['name'] or '') )))
+            for r in self.read(cr, uid, ids, ['number', 'partner_id', 'name'], context=context):
+                rest.append((r['id'], ('%s - %s - %s' % (r['number'] or '', r['partner_id'][1], r['name'] or ''))))
 
                 ## We will
             return rest
@@ -44,7 +44,7 @@ class AccountInvoice(orm.Model):
         if context is None:
             context = {}
         if not context.has_key('special_search'):
-            return super(AccountInvoice,self).name_search(cr, user, name, args=args, operator=operator, context=context, limit=limit)
+            return super(AccountInvoice, self).name_search(cr, user, name, args=args, operator=operator, context=context, limit=limit)
         ids = []
         if not args:
             args = []
