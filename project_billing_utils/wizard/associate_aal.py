@@ -31,8 +31,7 @@ class AssociateInvoice(orm.TransientModel):
     def associate_aal(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        # XXX if we check if context is None then active_model might not be in context
-        aal_obj = self.pool.get(context['active_model'])
+        aal_obj = self.pool.get('account.analytic.line')
         aal_ids = context.get('active_ids', False)
         if isinstance(ids, list):
             req_id = ids[0]
