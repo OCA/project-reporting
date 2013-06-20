@@ -18,11 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import fields, osv
-from tools.translate import _
+from openerp.osv import orm, fields
 
 
-class AssociateInvoice(osv.osv_memory):
+class AssociateInvoice(orm.TransientModel):
     _name = 'associate.aal.to.invoice'
     _description = 'Associate Analytic Lines'
     _columns = {
@@ -53,6 +52,5 @@ class AssociateInvoice(osv.osv_memory):
             'type': 'ir.actions.act_window',
         }
 
-AssociateInvoice()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -18,10 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
-from tools.translate import _
+from openerp.osv import orm, osv
+from openerp.tools.translate import _
 
-class ProjectProject(osv.osv):
+
+class ProjectProject(orm.Model):
     _inherit = 'project.project'
     _description = 'Project'
 
@@ -41,7 +42,5 @@ class ProjectProject(osv.osv):
                 raise osv.except_osv(_('Invalid Action !'), _('You can\'t delete account %s , analytic lines linked to it' % project.name))
             else:
                 super(ProjectProject, self).unlink(cr, uid, [project.id], context=context)
-
-ProjectProject()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
