@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author Joel Grand-Guillaume. Copyright Camptocamp SA
+# Copyright (c) 2010 Camptocamp SA (http://www.camptocamp.com)
+# All Right Reserved
 #
-##############################################################################
+# Author : Joel Grand-guillaume (Camptocamp)
+#
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
 # consequences resulting from its eventual inadequacies and bugs
@@ -27,31 +29,30 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from osv import osv, fields
 from tools.translate import _
 
-class DissociateInvoice(osv.osv_memory):
-    _name = 'dissociate.aal.to.invoice'
-    _description = 'Dissociate Analytic Lines'
+class ProjectProject(osv.osv):
+    _inherit = 'project.project'
+    _description = 'Project'
 
-    def dissociate_aal(self, cr, uid, ids, context=None):
+    def unlink(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        aal_obj = self.pool.get(context['active_model'])
-        aal_ids = context.get('active_ids', False)
-        if isinstance(ids, list):
-            req_id = ids[0]
-        else:
-            req_id = ids
-        ids2 = []
-        for id in aal_ids:
-            ids2.append(id)
-        # Use of SQL here cause otherwise the ORM won't allow to modify the invoiced AAL
-        # which is exactly what we want !
-        cr.execute("UPDATE account_analytic_line SET invoice_id = null WHERE id in (%s);"%(','.join(map(str, ids2))))
+        ### We will check if the account have no analytic line linked
+        if ids and isinstance(ids, int):
+            ids = [ids]
+        AccountLineobj = self.pool.get('account.analytic.line')
+        ProjectObj = self.pool.get('project.project')
+        ProjectList = ProjectObj.browse(cr, uid, ids, context=context)
+        for project in ProjectList:
+            AccountLineIds = AccountLineobj.search(cr, uid, [('account_id', '=', project.analytic_account_id.id)])
+            ## If we found line linked with account we raise an error
+            if AccountLineIds:
+                raise osv.except_osv(_('Invalid Action !'), _('You can\'t delete account %s , analytic lines linked to it' % project.name))
+            else:
+                super(ProjectProject, self).unlink(cr, uid, [project.id], context=context)
 
-        return {}
-
-DissociateInvoice()
+ProjectProject()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

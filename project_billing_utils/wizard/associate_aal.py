@@ -35,21 +35,22 @@ from tools.translate import _
 class AssociateInvoice(osv.osv_memory):
     _name = 'associate.aal.to.invoice'
     _description = 'Associate Analytic Lines'
-    
     _columns = {
-        'invoice_id': fields.many2one('account.invoice','Invoice', required=True),
+        'invoice_id': fields.many2one('account.invoice', 'Invoice', required=True),
     }
 
-    def associate_aal(self, cr, uid, ids, context):
-        aal_obj = self.pool.get('account.analytic.line')
+    def associate_aal(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        aal_obj = self.pool.get(context['active_model'])
         aal_ids = context.get('active_ids', False)
         if isinstance(ids, list):
             req_id = ids[0]
         else:
             req_id = ids
-        current = self.browse(cr, uid, req_id, context)
-        aal_obj.write(cr,uid,aal_ids,{"invoice_id":current.invoice_id.id},context)
-        
+        current = self.browse(cr, uid, req_id, context=context)
+        aal_obj.write(cr, uid, aal_ids, {'invoice_id': current.invoice_id.id}, context=context)
+
         # view_id = self.pool.get('ir.ui.view').search(cursor, uid, [('name', '=', )])
         return {
             'domain': "[('id','in', [%s])]" % (current.invoice_id.id,),
@@ -63,3 +64,5 @@ class AssociateInvoice(osv.osv_memory):
         }
 
 AssociateInvoice()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

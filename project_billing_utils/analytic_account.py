@@ -30,14 +30,13 @@
 ##############################################################################
 from osv import osv, fields
 
-
 class account_analytic_account(osv.osv):
-
     _inherit = 'account.analytic.account'
     _description = 'Analytic Account'
-
     _columns = {
         'project_ids': fields.one2many('project.project', 'analytic_account_id', 'Projects'),
     }
 
 account_analytic_account()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
