@@ -27,19 +27,19 @@ class ProjectProject(orm.Model):
     _description = 'Project'
 
     def unlink(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
         ### We will check if the account have no analytic line linked
         if ids and isinstance(ids, int):
             ids = [ids]
-        AccountLineobj = self.pool.get('account.analytic.line')
-        ProjectObj = self.pool.get('project.project')
-        ProjectList = ProjectObj.browse(cr, uid, ids, context=context)
-        for project in ProjectList:
-            AccountLineIds = AccountLineobj.search(cr, uid, [('account_id', '=', project.analytic_account_id.id)])
+        account_line_obj = self.pool.get('account.analytic.line')
+        project_list = self.browse(cr, uid, ids, context=context)
+        for project in project_list:
+            AccountLineIds = account_line_obj.search(cr, uid,
+                    [('account_id', '=', project.analytic_account_id.id)])
             ## If we found line linked with account we raise an error
             if AccountLineIds:
-                raise osv.except_osv(_('Invalid Action !'), _('You can\'t delete account %s , analytic lines linked to it' % project.name))
+                raise osv.except_osv(
+                        _('Invalid Action !'),
+                        _('You can\'t delete account %s , analytic lines linked to it' % project.name))
             else:
                 super(ProjectProject, self).unlink(cr, uid, [project.id], context=context)
 
