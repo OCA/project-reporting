@@ -27,40 +27,42 @@
 #
 ##############################################################################
 
+from osv import fields, osv
+from tools.translate import _
 
-from openerp.osv import orm
-
-
-class OpenInvoicesFromProject(orm.TransientModel):
+class OpenInvoicesFromProject(osv.osv_memory):
     _name = 'open.invoice.from.project'
     _description = 'Open Invoices'
 
+    def open_invoices(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
 
-    def open_invoices(self, cr, uid, ids, context):
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
         aa_obj = self.pool.get('project.project')
 
         active_ids = context.get('active_ids', False)
+        print str(active_ids)
         if isinstance(ids, list):
             req_id = ids[0]
         else:
             req_id = ids
         aa_ids = []
-        for project in aa_obj.browse(cr,uid,active_ids):
+        for project in aa_obj.browse(cr, uid, active_ids):
             aa_ids.append(project.analytic_account_id.id)
         # Use a SQL request because we can't do that so easily with the ORM
         cr.execute("""
-        SELECT inv.id from account_invoice inv 
-        LEFT JOIN account_invoice_line l ON (inv.id=l.invoice_id) 
+        SELECT inv.id from account_invoice inv
+        LEFT JOIN account_invoice_line l ON (inv.id=l.invoice_id)
         WHERE l.account_analytic_id IN (%s)
-        ;""" % (','.join(map(str,aa_ids))))
+        ;""" % (','.join(map(str, aa_ids))))
 
         inv_ids = cr.fetchall()
         line_ids = []
         for line in inv_ids:
             line_ids.append(line[0])
-        inv_type = context.get('inv_type', ['out_invoice'])
+        inv_type = context.get('inv_type', 'out_invoice')
 
         if 'out_invoice' in inv_type:
             xml_id = 'action_invoice_tree1'
@@ -73,3 +75,7 @@ class OpenInvoicesFromProject(orm.TransientModel):
         invoice_domain.append(('id', 'in', line_ids))
         result['domain'] = invoice_domain
         return result
+
+OpenInvoicesFromProject()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

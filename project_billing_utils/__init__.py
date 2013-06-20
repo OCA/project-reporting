@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 ##############################################################################
-# @author Joel Grand-Guillaume 
+# @author Joel Grand-Guillaume
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
 # consequences resulting from its eventual inadequacies and bugs
@@ -25,4 +25,7 @@
 ##############################################################################
 
 import analytic_account
+import project
 import wizard
+import invoice
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

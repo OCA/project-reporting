@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 # @author J Grand-Guillaume
@@ -24,9 +24,12 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
+
 {
-    "name" : "Analytic and project wizard for services companies",
-    "description" : """
+    'name' : 'Analytic and project wizard for services companies',
+    'version' : '1.4',
+    'category' : 'Generic Modules/Projects & Services',
+    'description' : '''
 Improve the view of analytic and timesheet lines for the project manager
 Add wizard to manage project and invoicing :
  - Associate Analytic Lines to invoice (from an invoice or from analytic line directly)
@@ -35,22 +38,22 @@ Add wizard to manage project and invoicing :
  - Get Analytic Lines from project (with recurssion in child account)
  - Get Analytic Lines from an invoice for controlling
  - Crearte a blank invoice from project (with related infos)
- 
-    """,
-    "version" : "1.4",
-    "author" : "Camptocamp",
-    "category" : "Generic Modules/Projects & Services",
-    "website": "http://www.camptocamp.com",
-    "depends" : ["project", "hr_timesheet_invoice"],
-    "init_xml" : [],
-    "update_xml" : [
-            "invoice_view.xml",
-            "project_view.xml",
-            "wizard/associate_aal_view.xml",
-            "wizard/dissociate_aal_view.xml",
-            "wizard/open_invoices_view.xml",
-            "wizard/blank_invoice_view.xml",
+
+    ''',
+    'author' : 'Camptocamp',
+    'website': 'http://www.camptocamp.com',
+    'depends' : ['project', 'hr_timesheet_invoice'],
+    'data' : [
+        'invoice_view.xml',
+        'project_view.xml',
+        'wizard/associate_aal_view.xml',
+        'wizard/dissociate_aal_view.xml',
+        'wizard/open_invoices_view.xml',
+        'wizard/blank_invoice_view.xml',
     ],
-    "active": False,
-    "installable": False,
+    'installable' : True,
+    'auto_install' : False,
+    'application' : False,
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
