@@ -28,7 +28,7 @@ class ProjectProject(orm.Model):
 
     def unlink(self, cr, uid, ids, context=None):
         ### We will check if the account have no analytic line linked
-        if ids and isinstance(ids, int):
+        if ids and isinstance(ids, (int, long)):
             ids = [ids]
         account_line_obj = self.pool.get('account.analytic.line')
         project_list = self.browse(cr, uid, ids, context=context)
