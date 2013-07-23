@@ -33,10 +33,10 @@ class ProjectProject(orm.Model):
         account_line_obj = self.pool.get('account.analytic.line')
         project_list = self.browse(cr, uid, ids, context=context)
         for project in project_list:
-            AccountLineIds = account_line_obj.search(cr, uid,
+            account_line_ids = account_line_obj.search(cr, uid,
                     [('account_id', '=', project.analytic_account_id.id)])
             ## If we found line linked with account we raise an error
-            if AccountLineIds:
+            if account_line_ids:
                 raise osv.except_osv(
                         _('Invalid Action !'),
                         _('You can\'t delete account %s , analytic lines linked to it' % project.name))
