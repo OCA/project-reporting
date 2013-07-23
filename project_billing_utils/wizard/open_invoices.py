@@ -41,11 +41,13 @@ class OpenInvoicesFromProject(orm.TransientModel):
         for project in aa_obj.browse(cr, uid, active_ids, context=context):
             aa_ids.append(project.analytic_account_id.id)
         # Use a SQL request because we can't do that so easily with the ORM
-        cr.execute("""
+        format_strings = ','.join(['%s'] * len(aa_ids))
+        query = """
             SELECT inv.id from account_invoice inv
                 LEFT JOIN account_invoice_line l ON (inv.id=l.invoice_id)
                 WHERE l.account_analytic_id IN (%s)
-            """ % (','.join(map(str, aa_ids))))
+            """ % format_strings
+        cr.execute(query, tuple(aa_ids))
 
         inv_ids = cr.fetchall()
         line_ids = []
