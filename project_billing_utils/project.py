@@ -43,5 +43,6 @@ class ProjectProject(orm.Model):
                         _('You can\'t delete account %s , analytic lines linked to it' % project.name))
             else:
                 super(ProjectProject, self).unlink(cr, uid, [project.id], context=context)
+        return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
