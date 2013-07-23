@@ -39,9 +39,8 @@ class DissociateInvoice(orm.TransientModel):
             ids2.append(id)
         # Use of SQL here cause otherwise the ORM won't allow to modify the invoiced AAL
         # which is exactly what we want !
-        format_strings = ','.join(['%s'] * len(ids2))
-        query = "UPDATE account_analytic_line SET invoice_id = NULL WHERE id IN (%s)" % format_strings
-        cr.execute(query, tuple(ids2))
+        query = "UPDATE account_analytic_line SET invoice_id = NULL WHERE id IN %s"
+        cr.execute(query, (tuple(ids2),))
 
         return {}
 
