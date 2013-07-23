@@ -34,7 +34,8 @@ class ProjectProject(orm.Model):
         project_list = self.browse(cr, uid, ids, context=context)
         for project in project_list:
             account_line_ids = account_line_obj.search(cr, uid,
-                    [('account_id', '=', project.analytic_account_id.id)])
+                    [('account_id', '=', project.analytic_account_id.id)],
+                    context=context)
             ## If we found line linked with account we raise an error
             if account_line_ids:
                 raise osv.except_osv(
