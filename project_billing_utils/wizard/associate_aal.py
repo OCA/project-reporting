@@ -31,7 +31,7 @@ class AssociateInvoice(orm.TransientModel):
     def associate_aal(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        aal_obj = self.pool.get('account.analytic.line')
+        aal_obj = self.pool.get('hr.analytic.timesheet')
         aal_ids = context.get('active_ids', False)
         if isinstance(ids, list):
             req_id = ids[0]
