@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Joël Grand-Guillaume
-#    Copyright 2010 Camptocamp SA
+#    Author: Joël Grand-Guillaume, Leonardo Pistone
+#    Copyright 2010-2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,30 +18,33 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+"""Introduce a wizard to dissociate an Analytic Line from an Invoice."""
 from openerp.osv import orm
 
 
 class DissociateInvoice(orm.TransientModel):
+
+    """Wizard to dissociate an Analytic Line from an Invoice."""
+
     _name = 'dissociate.aal.to.invoice'
     _description = 'Dissociate Analytic Lines'
 
     def dissociate_aal(self, cr, uid, ids, context=None):
+        """Dissociate invoice from the line and return {}.
+
+        This is necessary because the module hr_timesheet_invoice introduces
+        a check that we want to avoid.
+
+        """
         if context is None:
             context = {}
-        aal_obj = self.pool.get(context['active_model'])
-        aal_ids = context.get('active_ids', False)
-        if isinstance(ids, list):
-            req_id = ids[0]
-        else:
-            req_id = ids
-        ids2 = []
-        for id in aal_ids:
-            ids2.append(id)
-        # Use of SQL here cause otherwise the ORM won't allow to modify the invoiced AAL
-        # which is exactly what we want !
-        query = "UPDATE account_analytic_line SET invoice_id = NULL WHERE id IN %s"
-        cr.execute(query, (tuple(ids2),))
 
+        aal_obj = self.pool.get(context['active_model'])
+        ctx = context.copy()
+        ctx['skip_invoice_check'] = True
+        aal_obj.write(cr, uid, context['active_ids'], {
+            'invoice_id': False
+        }, ctx)
         return {}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
