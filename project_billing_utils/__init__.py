@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Joël Grand-Guillaume
-#    Copyright 2010 Camptocamp SA
+#    Author: Joël Grand-Guillaume, Leonardo Pistone
+#    Copyright 2010-2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,4 +22,5 @@ import analytic_account
 import project
 import wizard
 import invoice
+import analytic  # noqa
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
