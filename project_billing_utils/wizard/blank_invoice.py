@@ -62,24 +62,11 @@ class CreateInvoicesFromProject(orm.TransientModel):
                 pterm_list.sort()
                 date_due = pterm_list[-1]
 
-        if project.contact_id:
-            inv_contact = project.contact_id.id
-        else:
-            inv_contact = partner_obj.address_get(
-                    cr, uid,
-                    [partner.id],
-                    adr_pref=['invoice'])['invoice']
-
         return {
             'name': '%s - %s' % (time.strftime('%D'), project.name),
             'type':'out_invoice',
             'date_due': date_due,
             'partner_id': partner.id,
-            'address_contact_id': partner_obj.address_get(
-                    cr, uid,
-                    [partner.id],
-                    adr_pref=['contact'])['contact'],
-            'address_invoice_id': inv_contact,
             'payment_term': partner.property_payment_term.id or False,
             'account_id': partner.property_account_receivable.id,
             'currency_id': project.pricelist_id.currency_id.id,
