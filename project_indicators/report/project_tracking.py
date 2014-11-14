@@ -31,12 +31,13 @@ import time
 import math
 
 from report import report_sxw
-from osv import osv
 
 
 class report_project_tracking(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context):
-        super(report_project_tracking, self).__init__(cr, uid, name, context=context)
+        super(report_project_tracking, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'cr': cr,
@@ -58,6 +59,6 @@ class report_project_tracking(report_sxw.rml_parse):
 
 
 report_sxw.report_sxw('report.project.tracking',
-                       'project.project',
-                       'addons/project_indicators/report/project_tracking.mako',
-                       parser=report_project_tracking)
+                      'project.project',
+                      'addons/project_indicators/report/project_tracking.mako',
+                      parser=report_project_tracking)

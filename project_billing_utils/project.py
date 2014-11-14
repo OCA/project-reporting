@@ -27,22 +27,24 @@ class ProjectProject(orm.Model):
     _description = 'Project'
 
     def unlink(self, cr, uid, ids, context=None):
-        ### We will check if the account have no analytic line linked
+        # We will check if the account have no analytic line linked
         if ids and isinstance(ids, (int, long)):
             ids = [ids]
         account_line_obj = self.pool.get('account.analytic.line')
         project_list = self.browse(cr, uid, ids, context=context)
         for project in project_list:
             account_line_ids = account_line_obj.search(cr, uid,
-                    [('account_id', '=', project.analytic_account_id.id)],
-                    context=context)
-            ## If we found line linked with account we raise an error
+                                                       [('account_id', '=',
+                                                         project.analytic_account_id.id)],
+                                                       context=context)
+            # If we found line linked with account we raise an error
             if account_line_ids:
                 raise osv.except_osv(
-                        _('Invalid Action !'),
-                        _('You can\'t delete account %s , analytic lines linked to it' % project.name))
+                    _('Invalid Action !'),
+                    _('You can\'t delete account %s , analytic lines linked to it' % project.name))
             else:
-                super(ProjectProject, self).unlink(cr, uid, [project.id], context=context)
+                super(ProjectProject, self).unlink(
+                    cr, uid, [project.id], context=context)
         return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

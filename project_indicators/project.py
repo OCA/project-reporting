@@ -34,32 +34,32 @@ class Project(osv.osv):
     _inherit = "project.project"
 
     def open_project_indicators(self, cr, uid, ids, context=None):
-            ir_model_data_obj = self.pool.get('ir.model.data')
-            ir_model_data_id = ir_model_data_obj.search(cr, uid,
-                [['model', '=', 'ir.ui.view'],
-                 ['name', '=', 'account_analytic_account_wizard_indicators']],
-                context=context)
-            res_id = ir_model_data_obj.read(cr, uid, ir_model_data_id,
-                                            fields=['res_id'])[0]['res_id']
+        ir_model_data_obj = self.pool.get('ir.model.data')
+        ir_model_data_id = ir_model_data_obj.search(cr, uid,
+                                                    [['model', '=', 'ir.ui.view'],
+                                                     ['name', '=', 'account_analytic_account_wizard_indicators']],
+                                                    context=context)
+        res_id = ir_model_data_obj.read(cr, uid, ir_model_data_id,
+                                        fields=['res_id'])[0]['res_id']
 
-            if isinstance(ids, list):
-                ids = ids[0]
+        if isinstance(ids, list):
+            ids = ids[0]
 
-            project = self.browse(cr, uid, ids, context=context)
-            account_id = project.analytic_account_id.id
+        project = self.browse(cr, uid, ids, context=context)
+        account_id = project.analytic_account_id.id
 
-            return {
-                'name': 'Project indicators',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'view_id': [res_id],
-                'res_model': 'account.analytic.account',
-                'context': '{}',
-                'type': 'ir.actions.act_window',
-                'nodestroy': True,
-                'target': 'new',
-                'res_id': account_id,
-            }
+        return {
+            'name': 'Project indicators',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'view_id': [res_id],
+            'res_model': 'account.analytic.account',
+            'context': '{}',
+            'type': 'ir.actions.act_window',
+            'nodestroy': True,
+            'target': 'new',
+            'res_id': account_id,
+        }
 
 Project()
 
@@ -71,7 +71,8 @@ class ProjectTask(osv.osv):
         res = {}.fromkeys(ids, 0.0)
         for task in self.browse(cr, uid, ids, context=context):
             if task.delay_hours and task.planned_hours:
-                res[task.id] = round(100.0 * task.delay_hours / task.planned_hours, 2)
+                res[task.id] = round(
+                    100.0 * task.delay_hours / task.planned_hours, 2)
         return res
 
     _columns = {

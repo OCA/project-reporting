@@ -20,6 +20,7 @@
 ##############################################################################
 from openerp.osv import orm
 
+
 class OpenInvoicesFromProject(orm.TransientModel):
     _name = 'open.invoice.from.project'
     _description = 'Open Invoices'
@@ -34,9 +35,9 @@ class OpenInvoicesFromProject(orm.TransientModel):
 
         active_ids = context.get('active_ids', False)
         if isinstance(ids, list):
-            req_id = ids[0]
+            ids[0]
         else:
-            req_id = ids
+            pass
         aa_ids = []
         for project in aa_obj.browse(cr, uid, active_ids, context=context):
             aa_ids.append(project.analytic_account_id.id)
