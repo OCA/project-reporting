@@ -27,5 +27,5 @@
 #
 ##############################################################################
 
-import project
-import report
+from . import project
+from . import report
