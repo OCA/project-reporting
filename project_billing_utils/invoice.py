@@ -32,12 +32,13 @@ class AccountInvoice(orm.Model):
         else:
             if not ids:
                 return []
-            ## We will return value
+            # We will return value
             rest = []
             for r in self.read(cr, uid, ids, ['number', 'partner_id', 'name'], context=context):
-                rest.append((r['id'], ('%s - %s - %s' % (r['number'] or '', r['partner_id'][1], r['name'] or ''))))
+                rest.append(
+                    (r['id'], ('%s - %s - %s' % (r['number'] or '', r['partner_id'][1], r['name'] or ''))))
 
-                ## We will
+                # We will
             return rest
 
     def name_search(self, cr, user, name, args=None, operator='ilike', context=None, limit=100):
@@ -49,11 +50,14 @@ class AccountInvoice(orm.Model):
         if not args:
             args = []
         if name:
-            ids = self.search(cr, user, [('number',operator,name)] + args, limit=limit, context=context)
+            ids = self.search(
+                cr, user, [('number', operator, name)] + args, limit=limit, context=context)
         if not ids:
-            ids = self.search(cr, user, [('commercial_partner_id.name',operator,name)] + args, limit=limit, context=context)
+            ids = self.search(cr, user, [
+                              ('commercial_partner_id.name', operator, name)] + args, limit=limit, context=context)
         if not ids:
-            ids = self.search(cr, user, [('partner_id.name',operator,name)] + args, limit=limit, context=context)
+            ids = self.search(cr, user, [
+                              ('partner_id.name', operator, name)] + args, limit=limit, context=context)
         return self.name_get(cr, user, ids, context=context)
 
 

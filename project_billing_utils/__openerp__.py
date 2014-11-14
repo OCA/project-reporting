@@ -19,9 +19,9 @@
 #
 ##############################################################################
 {
-    'name' : 'Analytic and project wizard for services companies',
-    'version' : '1.4',
-    'category' : 'Generic Modules/Projects & Services',
+    'name': 'Analytic and project wizard for services companies',
+    'version': '1.4',
+    'category': 'Generic Modules/Projects & Services',
     'description' : '''
 Improve the view of analytic and timesheet lines for the project manager
 Add wizard to manage project and invoicing :
@@ -43,7 +43,7 @@ Add wizard to manage project and invoicing :
         'wizard/dissociate_aal_view.xml',
         'wizard/open_invoices_view.xml',
         'wizard/blank_invoice_view.xml',
-        ],
+    ],
     'installable': True,
     'auto_install': False,
     'application': False,
