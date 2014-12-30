@@ -84,11 +84,11 @@ class CreateInvoicesFromProject(orm.TransientModel):
         invoice_obj = self.pool.get('account.invoice')
 
         invoices = []
-        for project in project_obj.browse(cr, uid, context['active_ids'], context=context):
+        for project in project_obj.browse(cr, uid, context['active_ids'],
+                                          context=context):
             values = self._prepare_invoice(cr, uid, project, context=context)
             last_invoice = invoice_obj.create(cr, uid, values, context=context)
             invoices.append(last_invoice)
-
         xml_id = 'action_invoice_tree1'
         result = mod_obj.get_object_reference(cr, uid, 'account', xml_id)
         view_id = result and result[1] or False
@@ -97,5 +97,3 @@ class CreateInvoicesFromProject(orm.TransientModel):
         invoice_domain.append(('id', 'in', invoices))
         result['domain'] = invoice_domain
         return result
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
