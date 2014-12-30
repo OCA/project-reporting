@@ -25,7 +25,8 @@ class AssociateInvoice(orm.TransientModel):
     _name = 'associate.aal.to.invoice'
     _description = 'Associate Analytic Lines'
     _columns = {
-        'invoice_id': fields.many2one('account.invoice', 'Invoice', required=True),
+        'invoice_id': fields.many2one('account.invoice', 'Invoice',
+                                      required=True),
     }
 
     def associate_aal(self, cr, uid, ids, context=None):
@@ -41,7 +42,6 @@ class AssociateInvoice(orm.TransientModel):
         aal_obj.write(cr, uid, aal_ids,
                       {'invoice_id': current.invoice_id.id},
                       context=context)
-
         return {
             'domain': "[('id','in', [%s])]" % (current.invoice_id.id,),
             'name': 'Associated invoice',
@@ -52,6 +52,3 @@ class AssociateInvoice(orm.TransientModel):
             'context': context,
             'type': 'ir.actions.act_window',
         }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
