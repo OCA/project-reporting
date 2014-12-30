@@ -36,20 +36,18 @@
     "description":
     """
 This modules adds indicators on project :
-    - a popup window on the project view which display the indicators of its analytic account.
-    - fields with planned vs effective difference
-    - a report for the tracking of the projects (based on report_webkit)
 
+- a popup window on the project view which display the indicators of its
+  analytic account.
+- fields with planned vs effective difference
+- a report for the tracking of the projects (based on report_webkit)
 """,
     "website": "http://camptocamp.com",
     "depends": ['project',
                 'account_analytic_analysis',
                 'report_webkit'],
-    "init_xml": [],
-    "demo_xml": [],
-    "update_xml": ['project_view.xml',
-                   'report.xml',
-                   ],
+    "data": ['project_view.xml',
+             'report.xml'],
     "active": False,
     "installable": False,
 }
