@@ -18,9 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import analytic_account
-import project
-import wizard
-import invoice
-import analytic  # noqa
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import analytic_account
+from . import project
+from . import wizard
+from . import invoice
+from . import analytic  # noqa

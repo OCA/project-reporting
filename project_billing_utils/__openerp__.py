@@ -19,19 +19,19 @@
 #
 ##############################################################################
 {
-    'name' : 'Analytic and project wizard for services companies',
-    'version' : '1.4',
-    'category' : 'Generic Modules/Projects & Services',
-    'description' : '''
+    'name': 'Analytic and project wizard for services companies',
+    'version': '1.4',
+    'category': 'Generic Modules/Projects & Services',
+    'description': '''
 Improve the view of analytic and timesheet lines for the project manager
 Add wizard to manage project and invoicing :
- - Associate Analytic Lines to invoice (from an invoice or from analytic line directly)
+ - Associate Analytic Lines to invoice (from an invoice or from analytic line
+   directly)
  - Dissociate Analytic Lines from an invoice
  - Get all invoice from Project (with recurssion in child account)
  - Get Analytic Lines from project (with recurssion in child account)
  - Get Analytic Lines from an invoice for controlling
- - Crearte a blank invoice from project (with related infos)
-
+ - Create a blank invoice from project (with related infos)
     ''',
     'author': 'Camptocamp',
     'website': 'http://www.camptocamp.com',
@@ -43,9 +43,8 @@ Add wizard to manage project and invoicing :
         'wizard/dissociate_aal_view.xml',
         'wizard/open_invoices_view.xml',
         'wizard/blank_invoice_view.xml',
-        ],
+    ],
     'installable': True,
     'auto_install': False,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

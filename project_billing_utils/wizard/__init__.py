@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import associate_aal
-import dissociate_aal
-import open_invoices
-import blank_invoice
+from . import associate_aal
+from . import dissociate_aal
+from . import open_invoices
+from . import blank_invoice

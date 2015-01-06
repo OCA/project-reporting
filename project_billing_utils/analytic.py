@@ -23,7 +23,7 @@
 from openerp.osv import orm
 
 
-class account_analytic_line(orm.Model):
+class AccountAnalyticLine(orm.Model):
 
     """Hack the analytic line to optionally skip the invoice check."""
 
@@ -33,8 +33,7 @@ class account_analytic_line(orm.Model):
         """Put a key in the vals, since we have no context. Return super."""
         if context.get('skip_invoice_check'):
             vals['_x_vals_skip_invoice_check'] = True
-
-        return super(account_analytic_line, self).write(
+        return super(AccountAnalyticLine, self).write(
             cr, uid, ids, vals, context=context)
 
     def _check_inv(self, cr, uid, ids, vals):
@@ -42,5 +41,5 @@ class account_analytic_line(orm.Model):
         if '_x_vals_skip_invoice_check' in vals:
             del vals['_x_vals_skip_invoice_check']
             return True
-        return super(account_analytic_line, self)._check_inv(
+        return super(AccountAnalyticLine, self)._check_inv(
             cr, uid, ids, vals)

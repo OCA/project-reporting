@@ -23,6 +23,7 @@ from openerp.tools.translate import _
 from openerp.tools.safe_eval import safe_eval as eval
 import time
 
+
 class CreateInvoicesFromProject(orm.TransientModel):
     _name = 'create.invoice.from.project'
     _description = 'Create Invoices'
@@ -35,16 +36,15 @@ class CreateInvoicesFromProject(orm.TransientModel):
         """
         if not project.partner_id:
             raise osv.except_osv(
-                    _('UserError'),
-                    _('The Partner is missing on the project:\n%s' % project.name))
+                _('UserError'),
+                _('The Partner is missing on the project:\n%s' % project.name))
 
         if not project.pricelist_id:
             raise osv.except_osv(
-                    _('UserError'),
-                    _('The Customer Pricelist is '
-                      'missing on the project:\n%s' % project.name))
+                _('UserError'),
+                _('The Customer Pricelist is '
+                  'missing on the project:\n%s' % project.name))
 
-        partner_obj = self.pool.get('res.partner')
         account_payment_term_obj = self.pool.get('account.payment.term')
 
         partner = project.partner_id
@@ -52,11 +52,11 @@ class CreateInvoicesFromProject(orm.TransientModel):
         date_due = False
         if partner.property_payment_term:
             pterm_list = account_payment_term_obj.compute(
-                    cr, uid,
-                    partner.property_payment_term.id,
-                    value=1,
-                    date_ref=time.strftime('%Y-%m-%d'),
-                    context=context)
+                cr, uid,
+                partner.property_payment_term.id,
+                value=1,
+                date_ref=time.strftime('%Y-%m-%d'),
+                context=context)
             if pterm_list:
                 pterm_list = [line[0] for line in pterm_list]
                 pterm_list.sort()
@@ -64,7 +64,7 @@ class CreateInvoicesFromProject(orm.TransientModel):
 
         return {
             'name': '%s - %s' % (time.strftime('%D'), project.name),
-            'type':'out_invoice',
+            'type': 'out_invoice',
             'date_due': date_due,
             'partner_id': partner.id,
             'payment_term': partner.property_payment_term.id or False,
@@ -83,13 +83,12 @@ class CreateInvoicesFromProject(orm.TransientModel):
         project_obj = self.pool.get('project.project')
         invoice_obj = self.pool.get('account.invoice')
 
-        aa_ids = []
         invoices = []
-        for project in project_obj.browse(cr, uid, context['active_ids'], context=context):
+        for project in project_obj.browse(cr, uid, context['active_ids'],
+                                          context=context):
             values = self._prepare_invoice(cr, uid, project, context=context)
             last_invoice = invoice_obj.create(cr, uid, values, context=context)
             invoices.append(last_invoice)
-
         xml_id = 'action_invoice_tree1'
         result = mod_obj.get_object_reference(cr, uid, 'account', xml_id)
         view_id = result and result[1] or False
@@ -98,5 +97,3 @@ class CreateInvoicesFromProject(orm.TransientModel):
         invoice_domain.append(('id', 'in', invoices))
         result['domain'] = invoice_domain
         return result
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
