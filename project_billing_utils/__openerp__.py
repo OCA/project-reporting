@@ -38,7 +38,7 @@ Add wizard to manage project and invoicing :
  
     """,
     "version" : "1.4",
-    "author" : "Camptocamp",
+    "author" : "Camptocamp,Odoo Community Association (OCA)",
     "category" : "Generic Modules/Projects & Services",
     "website": "http://www.camptocamp.com",
     "depends" : ["project", "hr_timesheet_invoice"],
