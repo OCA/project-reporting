@@ -33,7 +33,7 @@ Add wizard to manage project and invoicing :
  - Get Analytic Lines from an invoice for controlling
  - Create a blank invoice from project (with related infos)
     ''',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': ['project', 'hr_timesheet_invoice'],
     'data': [
