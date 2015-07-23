@@ -18,31 +18,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm, osv
-from openerp.tools.translate import _
+from openerp import models, api, _
+from openerp import exceptions
 
 
-class ProjectProject(orm.Model):
+class ProjectProject(models.Model):
     _inherit = 'project.project'
     _description = 'Project'
 
-    def unlink(self, cr, uid, ids, context=None):
+    @api.multi
+    def unlink(self):
         # We will check if the account have no analytic line linked
-        if ids and isinstance(ids, (int, long)):
-            ids = [ids]
-        account_line_obj = self.pool['account.analytic.line']
-        project_list = self.browse(cr, uid, ids, context=context)
-        for project in project_list:
-            account_line_ids = account_line_obj.search(
-                cr, uid, [('account_id', '=', project.analytic_account_id.id)],
-                context=context)
+        account_line_obj = self.env['account.analytic.line']
+        for project in self:
+            account_lines = account_line_obj.search(
+                [('account_id', '=', project.analytic_account_id.id)])
             # If we found line linked with account we raise an error
-            if account_line_ids:
-                raise osv.except_osv(
+            if account_lines:
+                raise exceptions.Warning(
                     _('Invalid Action !'),
                     _('You can\'t delete account %s , analytic lines linked '
                       'to it' % project.name))
             else:
-                super(ProjectProject, self).unlink(
-                    cr, uid, [project.id], context=context)
+                super(ProjectProject, project).unlink()
         return True

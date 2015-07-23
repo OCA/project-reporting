@@ -18,25 +18,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm
+from openerp import models, api
 
 
-class AccountInvoice(orm.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def name_get(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        if 'special_search' not in context:
-            return super(AccountInvoice, self).name_get(
-                cr, uid, ids, context=context)
+    @api.multi
+    def name_get(self):
+        if 'special_search' not in self.env.context:
+            return super(AccountInvoice, self).name_get()
         else:
-            if not ids:
+            if not self.ids:
                 return []
             # We will return value
             rest = []
-            for r in self.read(cr, uid, ids, ['number', 'partner_id', 'name'],
-                               context=context):
+            for r in self.read(['number', 'partner_id', 'name']):
                 rest.append(
                     (r['id'],
                      ('%s - %s - %s' % (r['number'] or '',
@@ -44,29 +41,22 @@ class AccountInvoice(orm.Model):
                 # We will
             return rest
 
-    def name_search(self, cr, user, name, args=None, operator='ilike',
-                    context=None, limit=100):
-        if context is None:
-            context = {}
-        if 'special_search' not in context:
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        if 'special_search' not in self.env.context:
             return super(AccountInvoice, self).name_search(
-                cr, user, name, args=args, operator=operator, context=context,
-                limit=limit)
-        ids = []
+                name, args=args, operator=operator, limit=limit)
+        invoices = self.env['account.invoice']
         if not args:
             args = []
         if name:
-            ids = self.search(
-                cr, user, [('number', operator, name)] + args, limit=limit,
-                context=context)
-        if not ids:
-            ids = self.search(
-                cr, user,
+            invoices = self.search(
+                [('number', operator, name)] + args, limit=limit)
+        if not invoices:
+            invoices = self.search(
                 [('commercial_partner_id.name', operator, name)] + args,
-                limit=limit, context=context)
-        if not ids:
-            ids = self.search(
-                cr, user,
-                [('partner_id.name', operator, name)] + args, limit=limit,
-                context=context)
-        return self.name_get(cr, user, ids, context=context)
+                limit=limit)
+        if not invoices:
+            invoices = self.search(
+                [('partner_id.name', operator, name)] + args, limit=limit)
+        return invoices.name_get()

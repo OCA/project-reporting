@@ -19,30 +19,27 @@
 #
 ##############################################################################
 """Introduce a wizard to dissociate an Analytic Line from an Invoice."""
-from openerp.osv import orm
+from openerp import models, api
 
 
-class DissociateInvoice(orm.TransientModel):
+class DissociateInvoice(models.TransientModel):
 
     """Wizard to dissociate an Analytic Line from an Invoice."""
 
     _name = 'dissociate.aal.to.invoice'
     _description = 'Dissociate Analytic Lines'
 
-    def dissociate_aal(self, cr, uid, ids, context=None):
+    @api.multi
+    def dissociate_aal(self):
         """Dissociate invoice from the line and return {}.
 
         This is necessary because the module hr_timesheet_invoice introduces
         a check that we want to avoid.
 
         """
-        if context is None:
-            context = {}
-
-        aal_obj = self.pool.get(context['active_model'])
-        ctx = context.copy()
+        aal_obj = self.env[self.env.context['active_model']]
+        ctx = self.env.context.copy()
+        aals = aal_obj.browse(self.env.context['active_ids'])
         ctx['skip_invoice_check'] = True
-        aal_obj.write(cr, uid, context['active_ids'], {
-            'invoice_id': False
-        }, ctx)
+        aals.with_context(ctx).write({'invoice_id': False})
         return {}

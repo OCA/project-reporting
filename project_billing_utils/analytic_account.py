@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Joël Grand-Guillaume, Leonardo Pistone
-#    Copyright 2010-2014 Camptocamp SA
+#    Author: Joël Grand-Guillaume
+#    Copyright 2010 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,8 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import analytic_account
-from . import project
-from . import wizard
-from . import invoice
-from . import analytic  # noqa
+from openerp import models, fields
+
+
+class AccountAnalyticAccount(models.Model):
+    _inherit = 'account.analytic.account'
+    _description = 'Analytic Account'
+
+    project_ids = fields.One2many('project.project', 'analytic_account_id',
+                                  string='Projects')
