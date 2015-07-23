@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_create_related_invoice" model="ir.ui.view">
+      <field name="name">Create blank invoice</field>
+      <field name="model">create.invoice.from.project</field>
+      <field name="arch" type="xml">
+        <form string="Create Blank Invoices" version="7.0">
+          <group>
+            <separator string="Create a blank invoices ?" colspan="4"/>
+          </group>
+          <footer>
+            <button special="cancel" string="_Cancel" icon="gtk-cancel" />
+            <button name="create_invoices" string="_Ok" type="object" icon="gtk-ok"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <act_window name="Create Blank Invoices"
+      res_model="create.invoice.from.project"
+      src_model="project.project"
+      key2="client_action_multi"
+      view_mode="form"
+      target="new"
+      context="{'inv_type':'out_invoice'}"
+      id="action_create_customer_invoice"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_open_related_invoice" model="ir.ui.view">
+      <field name="name">Open Related Invoices</field>
+      <field name="model">open.invoice.from.project</field>
+      <field name="arch" type="xml">
+        <form string="Open Related Invoices" version="7.0">
+          <group>
+            <separator string="Open Related Project Invoices ?" colspan="4"/>
+          </group>
+          <footer>
+            <button special="cancel" string="_Cancel" icon="gtk-cancel" />
+            <button name="open_invoices" string="_Ok" type="object" icon="gtk-ok"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <act_window name="Customer Invoices"
+      res_model="open.invoice.from.project"
+      src_model="project.project"
+      key2="client_action_multi"
+      view_mode="form"
+      target="new"
+      context="{'inv_type':['out_invoice','in_refund']}"
+      id="action_open_customer_invoice"/>
+
+    <act_window name="Supplier Invoices"
+      res_model="open.invoice.from.project"
+      src_model="project.project"
+      key2="client_action_multi"
+      view_mode="form"
+      target="new"
+      context="{'inv_type':['in_invoice','out_refund']}"
+      id="action_open_supplier_invoice"/>
+
+    <!-- multi="True" -->
+  </data>
+</openerp>
