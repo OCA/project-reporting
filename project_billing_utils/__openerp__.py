@@ -22,7 +22,7 @@
     'name': 'Analytic and project wizard for services companies',
     'version': '1.4',
     'category': 'Generic Modules/Projects & Services',
-    'description': '''
+    'summary': '''
 Improve the view of analytic and timesheet lines for the project manager
 Add wizard to manage project and invoicing :
  - Associate Analytic Lines to invoice (from an invoice or from analytic line
