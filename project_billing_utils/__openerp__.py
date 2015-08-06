@@ -19,8 +19,8 @@
 #
 ##############################################################################
 {
-    'name': 'Analytic and project wizard for services companies',
-    'version': '1.4',
+    'name': 'Analytic and project wizard for service companies',
+    'version': '8.0.1.4',
     'category': 'Generic Modules/Projects & Services',
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
