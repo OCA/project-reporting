@@ -39,9 +39,9 @@ class ProjectProject(orm.Model):
             # If we found line linked with account we raise an error
             if account_line_ids:
                 raise osv.except_osv(
-                    _('Invalid Action !'),
+                    _('Invalid Action'),
                     _('You can\'t delete account %s , analytic lines linked '
-                      'to it' % project.name))
+                      'to it') % project.name)
             else:
                 super(ProjectProject, self).unlink(
                     cr, uid, [project.id], context=context)

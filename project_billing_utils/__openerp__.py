@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Analytic and project wizard for services companies',
+    'name': 'Analytic and project wizard for service companies',
     'version': '1.4',
     'category': 'Generic Modules/Projects & Services',
     'description': '''
@@ -28,8 +28,8 @@ Add wizard to manage project and invoicing :
  - Associate Analytic Lines to invoice (from an invoice or from analytic line
    directly)
  - Dissociate Analytic Lines from an invoice
- - Get all invoice from Project (with recurssion in child account)
- - Get Analytic Lines from project (with recurssion in child account)
+ - Get all invoices from Project (with recursion in child account)
+ - Get Analytic Lines from project (with recursion in child account)
  - Get Analytic Lines from an invoice for controlling
  - Create a blank invoice from project (with related infos)
     ''',
