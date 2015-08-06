@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from openerp import models, api
+from openerp.tools.safe_eval import safe_eval
 
 
 class OpenInvoicesFromProject(models.TransientModel):
@@ -55,11 +56,8 @@ class OpenInvoicesFromProject(models.TransientModel):
             xml_id = 'action_invoice_tree2'
 
         result = self.env.ref('account.%s' % xml_id)
-        if result:
-            result = result.read()[0]
-        else:
-            result = {}
-        invoice_domain = eval(result.get('domain', []))
+        result = result.read()[0]
+        invoice_domain = safe_eval(result.get('domain', []))
         invoice_domain.append(('id', 'in', line_ids))
         result['domain'] = invoice_domain
         return result
