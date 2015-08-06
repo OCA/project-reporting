@@ -29,15 +29,17 @@ class AccountInvoice(models.Model):
         if 'special_search' not in self.env.context:
             return super(AccountInvoice, self).name_get()
         else:
-            if not self.ids:
+            if not self:
                 return []
             # We will return value
             rest = []
-            for r in self.read(['number', 'partner_id', 'name']):
+            for r in self:
                 rest.append(
                     (r['id'],
-                     ('%s - %s - %s' % (r['number'] or '',
-                                        r['partner_id'][1], r['name'] or ''))))
+                     ('%s - %s - %s' % (r.number or '',
+                                        r.partner_id.name_get(), r.name or ''))
+                     )
+                    )
                 # We will
             return rest
 

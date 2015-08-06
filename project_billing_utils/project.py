@@ -36,9 +36,9 @@ class ProjectProject(models.Model):
             # If we found line linked with account we raise an error
             if account_lines:
                 raise exceptions.Warning(
-                    _('Invalid Action !'),
-                    _('You can\'t delete account %s , analytic lines linked '
-                      'to it' % project.name))
+                    _('Invalid Action'),
+                    _('You cannot delete account %s as there are analytic '
+                      'lines linked to it') % project.name)
             else:
                 super(ProjectProject, project).unlink()
         return True

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 from openerp import models, api, fields, _
-from openerp.tools.safe_eval import safe_eval as eval
+from openerp.tools.safe_eval import safe_eval
 from openerp import exceptions
 
 import time
@@ -39,13 +39,13 @@ class CreateInvoicesFromProject(models.TransientModel):
         if not project.partner_id:
             raise exceptions.Warning(
                 _('UserError'),
-                _('The Partner is missing on the project:\n%s' % project.name))
+                _('The Partner is missing on the project:\n%s') % project.name)
 
         if not project.pricelist_id:
             raise exceptions.Warning(
                 _('UserError'),
                 _('The Customer Pricelist is '
-                  'missing on the project:\n%s' % project.name))
+                  'missing on the project:\n%s') % project.name)
 
         partner = project.partner_id
 
@@ -85,11 +85,8 @@ class CreateInvoicesFromProject(models.TransientModel):
 
         xml_id = 'action_invoice_tree1'
         view = self.env.ref('account.%s' % xml_id)
-        if view:
-            result = view.read()[0]
-        else:
-            result = {}
-        invoice_domain = eval(result.get('domain', []))
+        result = view.read()[0]
+        invoice_domain = safe_eval(result.get('domain', []))
         invoice_domain.append(('id', 'in', invoices.ids))
         result['domain'] = invoice_domain
         return result
