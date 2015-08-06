@@ -19,6 +19,7 @@
 #
 ##############################################################################
 from openerp.osv import orm
+from openerp.tools.safe_eval import safe_eval
 
 
 class OpenInvoicesFromProject(orm.TransientModel):
@@ -58,7 +59,7 @@ class OpenInvoicesFromProject(orm.TransientModel):
         result = mod_obj.get_object_reference(cr, uid, 'account', xml_id)
         id = result and result[1] or False
         result = act_obj.read(cr, uid, id, context=context)
-        invoice_domain = eval(result['domain'])
+        invoice_domain = safe_eval(result['domain'])
         invoice_domain.append(('id', 'in', line_ids))
         result['domain'] = invoice_domain
         return result

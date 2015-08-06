@@ -20,7 +20,7 @@
 ##############################################################################
 from openerp.osv import orm, osv
 from openerp.tools.translate import _
-from openerp.tools.safe_eval import safe_eval as eval
+from openerp.tools.safe_eval import safe_eval
 import time
 
 
@@ -37,13 +37,13 @@ class CreateInvoicesFromProject(orm.TransientModel):
         if not project.partner_id:
             raise osv.except_osv(
                 _('UserError'),
-                _('The Partner is missing on the project:\n%s' % project.name))
+                _('The Partner is missing on the project:\n%s') % project.name)
 
         if not project.pricelist_id:
             raise osv.except_osv(
                 _('UserError'),
                 _('The Customer Pricelist is '
-                  'missing on the project:\n%s' % project.name))
+                  'missing on the project:\n%s') % project.name)
 
         account_payment_term_obj = self.pool.get('account.payment.term')
 
@@ -93,7 +93,7 @@ class CreateInvoicesFromProject(orm.TransientModel):
         result = mod_obj.get_object_reference(cr, uid, 'account', xml_id)
         view_id = result and result[1] or False
         result = act_obj.read(cr, uid, view_id, context=context)
-        invoice_domain = eval(result['domain'])
+        invoice_domain = safe_eval(result['domain'])
         invoice_domain.append(('id', 'in', invoices))
         result['domain'] = invoice_domain
         return result
