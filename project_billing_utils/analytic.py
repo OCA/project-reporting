@@ -20,26 +20,26 @@
 ##############################################################################
 """Changes to allow the dissociate analytic lines wizard to work."""
 
-from openerp.osv import orm
+from openerp import models, api
 
 
-class AccountAnalyticLine(orm.Model):
+class AccountAnalyticLine(models.Model):
 
     """Hack the analytic line to optionally skip the invoice check."""
 
     _inherit = 'account.analytic.line'
 
-    def write(self, cr, uid, ids, vals, context=None):
+    @api.multi
+    def write(self, vals):
         """Put a key in the vals, since we have no context. Return super."""
-        if context.get('skip_invoice_check'):
+        if self.env.context.get('skip_invoice_check'):
             vals['_x_vals_skip_invoice_check'] = True
-        return super(AccountAnalyticLine, self).write(
-            cr, uid, ids, vals, context=context)
+        return super(AccountAnalyticLine, self).write(vals)
 
-    def _check_inv(self, cr, uid, ids, vals):
+    @api.multi
+    def _check_inv(self, vals):
         """Optionally skip invoice check. Return boolean."""
         if '_x_vals_skip_invoice_check' in vals:
             del vals['_x_vals_skip_invoice_check']
             return True
-        return super(AccountAnalyticLine, self)._check_inv(
-            cr, uid, ids, vals)
+        return super(AccountAnalyticLine, self)._check_inv(vals)

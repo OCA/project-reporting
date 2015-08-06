@@ -18,37 +18,28 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm, fields
+from openerp import models, api, fields, _
 
 
-class AssociateInvoice(orm.TransientModel):
+class AssociateInvoice(models.TransientModel):
     _name = 'associate.aal.to.invoice'
     _description = 'Associate Analytic Lines'
-    _columns = {
-        'invoice_id': fields.many2one('account.invoice', 'Invoice',
-                                      required=True),
-    }
+    invoice_id = fields.Many2one('account.invoice', string='Invoice',
+                                 required=True)
 
-    def associate_aal(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        aal_obj = self.pool.get(context['active_model'])
-        aal_ids = context.get('active_ids', False)
-        if isinstance(ids, list):
-            req_id = ids[0]
-        else:
-            req_id = ids
-        current = self.browse(cr, uid, req_id, context=context)
-        aal_obj.write(cr, uid, aal_ids,
-                      {'invoice_id': current.invoice_id.id},
-                      context=context)
+    @api.multi
+    def associate_aal(self):
+        aal_obj = self.env[self.env.context['active_model']]
+        aal_ids = self.env.context.get('active_ids', False)
+        aal_rs = aal_obj.browse(aal_ids)
+        aal_rs.write({'invoice_id': self.invoice_id.id})
         return {
-            'domain': "[('id','in', [%s])]" % (current.invoice_id.id,),
-            'name': 'Associated invoice',
+            'domain': "[('id','in', [%s])]" % (self.invoice_id.id,),
+            'name': _('Associated invoice'),
             'view_type': 'form',
             'view_mode': 'tree,form',
             'res_model': 'account.invoice',
             'view_id': False,
-            'context': context,
+            'context': self.env.context,
             'type': 'ir.actions.act_window',
         }

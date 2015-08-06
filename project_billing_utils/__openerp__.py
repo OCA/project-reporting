@@ -19,20 +19,9 @@
 #
 ##############################################################################
 {
-    'name': 'Analytic and project wizard for services companies',
-    'version': '1.4',
+    'name': 'Analytic and project wizard for service companies',
+    'version': '8.0.1.4',
     'category': 'Generic Modules/Projects & Services',
-    'description': '''
-Improve the view of analytic and timesheet lines for the project manager
-Add wizard to manage project and invoicing :
- - Associate Analytic Lines to invoice (from an invoice or from analytic line
-   directly)
- - Dissociate Analytic Lines from an invoice
- - Get all invoice from Project (with recurssion in child account)
- - Get Analytic Lines from project (with recurssion in child account)
- - Get Analytic Lines from an invoice for controlling
- - Create a blank invoice from project (with related infos)
-    ''',
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': ['project', 'hr_timesheet_invoice'],

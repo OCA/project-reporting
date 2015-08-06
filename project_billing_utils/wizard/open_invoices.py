@@ -18,47 +18,46 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm
+from openerp import models, api
+from openerp.tools.safe_eval import safe_eval
 
 
-class OpenInvoicesFromProject(orm.TransientModel):
+class OpenInvoicesFromProject(models.TransientModel):
     _name = 'open.invoice.from.project'
     _description = 'Open Invoices'
 
-    def open_invoices(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+    @api.multi
+    def open_invoices(self):
+        aa_obj = self.env['project.project']
 
-        mod_obj = self.pool.get('ir.model.data')
-        act_obj = self.pool.get('ir.actions.act_window')
-        aa_obj = self.pool.get('project.project')
+        active_ids = self.env.context.get('active_ids', False)
+#         aa_rs = self.env['account.analytic.account']
+#         for project in aa_obj.browse(active_ids):
+#             aa_rs += project.analytic_account_id
+        aa_rs = aa_obj.browse(active_ids).mapped('analytic_account_id')
 
-        active_ids = context.get('active_ids', False)
-        aa_ids = []
-        for project in aa_obj.browse(cr, uid, active_ids, context=context):
-            aa_ids.append(project.analytic_account_id.id)
         # Use a SQL request because we can't do that so easily with the ORM
         query = """
             SELECT inv.id from account_invoice inv
                 LEFT JOIN account_invoice_line l ON (inv.id=l.invoice_id)
                 WHERE l.account_analytic_id IN %s
             """
-        cr.execute(query, (tuple(aa_ids),))
+        self.env.cr.execute(query, (tuple(aa_rs.ids),))
 
-        inv_ids = cr.fetchall()
+        inv_ids = self.env.cr.fetchall()
         line_ids = []
         for line in inv_ids:
             line_ids.append(line[0])
-        inv_type = context.get('inv_type', 'out_invoice')
+        inv_type = self.env.context.get('inv_type', 'out_invoice')
 
         if 'out_invoice' in inv_type:
             xml_id = 'action_invoice_tree1'
         else:
             xml_id = 'action_invoice_tree2'
-        result = mod_obj.get_object_reference(cr, uid, 'account', xml_id)
-        id = result and result[1] or False
-        result = act_obj.read(cr, uid, id, context=context)
-        invoice_domain = eval(result['domain'])
+
+        result = self.env.ref('account.%s' % xml_id)
+        result = result.read()[0]
+        invoice_domain = safe_eval(result.get('domain', []))
         invoice_domain.append(('id', 'in', line_ids))
         result['domain'] = invoice_domain
         return result
