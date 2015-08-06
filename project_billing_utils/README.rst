@@ -1,17 +1,17 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Analytic and project wizard for services companies
-==================================================
+Analytic and project wizard for service companies
+=================================================
 
 
 Improve the view of analytic and timesheet lines for the project manager
-Add wizard to manage project and invoicing :
+Add a wizard to manage project and invoicing:
 
  * Associate Analytic Lines to invoice (from an invoice or from analytic line directly)
  * Dissociate Analytic Lines from an invoice
- * Get all invoice from Project (with recurssion in child account)
- * Get Analytic Lines from project (with recurssion in child account)
+ * Get all invoices from Project (with recursion in child account)
+ * Get Analytic Lines from project (with recursion in child account)
  * Get Analytic Lines from an invoice for controlling
  * Create a blank invoice from project (with related infos)
 
