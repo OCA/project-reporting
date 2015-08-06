@@ -34,10 +34,13 @@ class AccountInvoice(models.Model):
             # We will return value
             rest = []
             for r in self:
+                partner_name = r.partner_id.name_get()
+                if partner_name:
+                    partner_name = partner_name[0][1]
                 rest.append(
                     (r['id'],
                      ('%s - %s - %s' % (r.number or '',
-                                        r.partner_id.name_get(), r.name or ''))
+                                        partner_name or '', r.name or ''))
                      )
                     )
                 # We will
