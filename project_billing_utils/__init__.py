@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import analytic_account
 from . import project
 from . import wizard
 from . import invoice

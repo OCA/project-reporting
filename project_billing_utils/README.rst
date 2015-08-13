@@ -11,7 +11,6 @@ Add a wizard to manage project and invoicing:
  * Associate Analytic Lines to invoice (from an invoice or from analytic line directly)
  * Dissociate Analytic Lines from an invoice
  * Get all invoices from Project (with recursion in child account)
- * Get Analytic Lines from project (with recursion in child account)
  * Get Analytic Lines from an invoice for controlling
  * Create a blank invoice from project (with related infos)
 
