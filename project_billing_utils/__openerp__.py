@@ -24,7 +24,9 @@
     'category': 'Generic Modules/Projects & Services',
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
-    'depends': ['project', 'hr_timesheet_invoice'],
+    'depends': ['project',
+                'hr_timesheet_invoice',
+                'project_analytic_line_view'],
     'data': [
         'invoice_view.xml',
         'project_view.xml',
