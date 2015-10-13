@@ -13,6 +13,6 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[project_indicators](__unported__/project_indicators/) | 1.0 (unported) | Project indicators
+[project_indicators](project_indicators/) | 1.0 (unported) | Project indicators
 
 [//]: # (end addons)
