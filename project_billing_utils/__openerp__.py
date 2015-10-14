@@ -35,7 +35,7 @@
         'wizard/open_invoices_view.xml',
         'wizard/blank_invoice_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
