@@ -3,4 +3,11 @@
 
 
 [//]: # (addons)
+Unported addons
+---------------
+addon | version | summary
+--- | --- | ---
+[project_billing_utils](project_billing_utils/) | 8.0.1.4 (unported) | Analytic and project wizard for service companies
+[project_indicators](project_indicators/) | 1.0 (unported) | Project indicators
+
 [//]: # (end addons)
