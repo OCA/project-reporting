@@ -7,7 +7,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[project_billing_utils](project_billing_utils/) | 8.0.1.4 | Analytic and project wizard for service companies
+[project_billing_utils](project_billing_utils/) | 8.0.1.4.0 | Analytic and project wizard for service companies
 
 Unported addons
 ---------------
