@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=================
-Project Task Qweb
-=================
+===================
+Project Task Report
+===================
 
 This module adds a basic Qweb report to the tasks of Project Management App.
 

@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Project Task Qweb",
+    "name": "Project Task Report",
     "summary": "Basic report for project tasks.",
     "version": "9.0.1.0.0",
     "author": "Eficent, "

@@ -57,7 +57,7 @@
     <report
         id="report_project_task_action"
         model="project.task"
-        name="project_task_qweb.name_report"
+        name="project_task_report.name_report"
         string="Print Task"
         report_type="qweb-pdf"
         multi="False"/>
