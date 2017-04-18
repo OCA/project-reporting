@@ -7,6 +7,8 @@ Project Task Report
 ===================
 
 This module adds a basic Qweb report to the tasks of Project Management App.
+The report has two versions: one with only the task information and
+another including the chatter messages as well.
 
 Usage
 =====
@@ -14,7 +16,7 @@ Usage
 To use this module, you need to:
 
 #. Go to 'Project > Tasks' and open a task.
-#. Click 'Print > Print Task'.
+#. Click 'Print > Print Task' or 'Print > Print Task and Chatter'.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
