@@ -4,7 +4,7 @@
 
 <odoo>
 
-    <template id="task_report">
+    <template id="task_chatter_report">
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="report.external_layout">
@@ -46,8 +46,35 @@
                                 </td>
                             </tr>
                         </table>
-                            <center><h3>Description</h3></center>
-                            <span t-field="o.description"/>
+                        <center><h3>Description</h3></center>
+                        <span t-field="o.description"/>
+                        <hr/>
+                        <center><h3>Chatter</h3></center>
+                        <table>
+                            <t t-foreach="o.message_ids" t-as="msg">
+                                <tr>
+                                    <td style="padding-right: 1cm; font-weight:bold;">
+                                        <span t-field="msg.author_id"/><br/>
+                                        <div style="font-size:75%; padding-left: 3mm;">
+                                            (<span t-field="msg.date"/>)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div t-if="msg.subject"><span t-field="msg.subject"/>: </div>
+                                        <div t-if="msg.message_type == 'notification'">
+                                            <span t-field="msg.subtype_id.name"/>
+                                            <t t-foreach='msg.tracking_value_ids' t-as='value'>
+                                                <li>
+                                                    <t t-esc="value.field_desc"/>:
+                                                    <span> <t t-esc="value.new_value_char"/> </span>
+                                                </li>
+                                            </t>
+                                        </div>
+                                        <span t-field="msg.body"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
                     </div>
                 </t>
             </t>
@@ -55,10 +82,10 @@
     </template>
 
     <report
-        id="report_project_task_action"
+        id="report_project_task_chatter_action"
         model="project.task"
-        name="project_task_report.task_report"
-        string="Print Task"
+        name="project_task_report.task_chatter_report"
+        string="Print Task and Chatter"
         report_type="qweb-pdf"
         multi="False"/>
 
