@@ -14,6 +14,7 @@
     "depends": ["project"],
     "data": [
         'views/project_task_report.xml',
+        'views/project_task_chatter_report.xml',
     ],
     "license": "AGPL-3",
     'installable': True,
