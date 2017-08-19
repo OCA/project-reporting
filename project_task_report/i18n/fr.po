@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * project_task_report
+# 
+# Translators:
+# Quentin THEURET <odoo@kerpeo.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-10 09:06+0000\n"
+"PO-Revision-Date: 2017-08-10 09:06+0000\n"
+"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Assigned to"
+msgstr "Assignée à "
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Assigning Date"
+msgstr "Date d'assignation"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+msgid "Chatter"
+msgstr "Discussions"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Deadline"
+msgstr "Date limite"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Description"
+msgstr "Description"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Last Stage Update"
+msgstr "Dernière étape mise à jour"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: project_task_report
+#: model:ir.actions.report.xml,name:project_task_report.report_project_task_action
+msgid "Print Task"
+msgstr "Imprimer la tâche"
+
+#. module: project_task_report
+#: model:ir.actions.report.xml,name:project_task_report.report_project_task_chatter_action
+msgid "Print Task and Chatter"
+msgstr "Imprimer la tâche et la discussion"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Project"
+msgstr "Projet"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: project_task_report
+#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model:ir.ui.view,arch_db:project_task_report.task_report
+msgid "Task:"
+msgstr "Tâche :"
