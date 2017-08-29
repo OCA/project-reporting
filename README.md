@@ -4,6 +4,13 @@
 
 [//]: # (addons)
 
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[project_task_report](project_task_report/) | 10.0.1.0.0 | Basic report for project tasks.
+
+
 Unported addons
 ---------------
 addon | version | summary
