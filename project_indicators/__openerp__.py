@@ -30,19 +30,11 @@
 
 {
     "name": "Project indicators",
-    "version": "1.0",
+    "version": "9.0.1.0.0",
     "author": "Camptocamp,Odoo Community Association (OCA), "
             "Serpent Consulting Services Pvt. Ltd.",
     "category": "Generic Modules/Projects & Services",
-    "description":
-    """
-This modules adds indicators on project :
-
-- a popup window on the project view which display the indicators of its
-  analytic account.
-- fields with planned vs effective difference
-- a report for the tracking of the projects (based on report_webkit)
-""",
+    "license": "AGPL-3",
     "website": "http://camptocamp.com",
     "depends": ['project_timesheet',
                 'report_webkit',
@@ -51,4 +43,5 @@ This modules adds indicators on project :
              'views/report.xml',
              'report/project_tracking.xml'],
     "installable": True,
+    "application": False,
 }
