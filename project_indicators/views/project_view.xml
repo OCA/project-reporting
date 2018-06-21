@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        #---------------------------------------------------------------------------------------------------------
+        #   Add useful fields on task view tree
+        #---------------------------------------------------------------------------------------------------------
+        <record id="view_task_tree2_time_fields" model="ir.ui.view">
+            <field name="name">project.task.tree.time.fields</field>
+            <field name="model">project.task</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="project.view_task_tree2" />
+            <field name="arch" type="xml">
+                <data>
+                    <field name="planned_hours" position="replace">
+                        <field name="planned_hours" widget="float_time" sum="Planned Hours"/>
+                    </field>
+                    <field name="total_hours" position="replace">
+                        <field name="total_hours" widget="float_time" sum="Total Hours"/>
+                    </field>
+                    <field name="effective_hours" position="replace">
+                        <field name="effective_hours" widget="float_time" sum="Spent Hours"/>
+                    </field>
+                    <field name="remaining_hours" position="after">
+                        <field name="delay_hours" widget="float_time" sum="Delay Hours"/>
+                        <field name="planning_error_percentage" sum="Percentage Error"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        #---------------------------------------------------------------------------------------------------------
+        #   Add useful fields on task view form
+        #---------------------------------------------------------------------------------------------------------
+        <record id="view_task_form2_time_fields" model="ir.ui.view">
+            <field name="name">project.task.form.time.fields</field>
+            <field name="model">project.task</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="project_timesheet.view_task_form2_inherited" />
+            <field name="arch" type="xml">
+                <field name="progress" position="after">
+                        <field name="delay_hours" widget="float_time" sum="Delay Hours"/>
+                        <field name="planning_error_percentage" sum="Percentage Error"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

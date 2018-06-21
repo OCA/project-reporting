@@ -29,20 +29,21 @@
 
 import time
 import math
+from openerp import models
+from openerp.report import report_sxw
 
-from report import report_sxw
 
-
-class report_project_tracking(report_sxw.rml_parse):
+class ReportProjectTracking(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
-        super(report_project_tracking, self).__init__(
+        super(ReportProjectTracking, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'cr': cr,
             'uid': uid,
             'float_time_convert': self.float_time_convert,
+            'total_project': self.total_project_analysis
         })
 
     def float_time_convert(self, float_val):
@@ -57,8 +58,33 @@ class report_project_tracking(report_sxw.rml_parse):
         float_time = '%s%02d:%02d' % (sign, hours, mins)
         return float_time
 
+    def total_project_analysis(self, project_id):
+        res = {}
+        effective_hours = 0.0
+        remaining_hours = 0.0
+        total_hours = 0.0
+        planned_hours = 0.0
+        delay_hours = 0.0
+        planning_error_percentage = 0.0
+        for task in project_id.tasks:
+            effective_hours += task.effective_hours
+            remaining_hours += task.remaining_hours
+            total_hours += task.total_hours
+            planned_hours += task.planned_hours
+            delay_hours += task.delay_hours
+            planning_error_percentage += task.planning_error_percentage
+        res.update({'effective_hours': effective_hours,
+                    'remaining_hours': remaining_hours,
+                    'total_hours': total_hours,
+                    'planned_hours': planned_hours,
+                    'delay_hours': delay_hours,
+                    'planning_error_percentage': planning_error_percentage
+                    })
+        return [res]
 
-report_sxw.report_sxw('report.project.tracking',
-                      'project.project',
-                      'addons/project_indicators/report/project_tracking.mako',
-                      parser=report_project_tracking)
+
+class ProjectTrackingQwebReport(models.AbstractModel):
+    _name = "report.project_indicators.project_tracking"
+    _inherit = "report.abstract_report"
+    _template = "project_indicators.project_tracking"
+    _wrapped_report_class = ReportProjectTracking

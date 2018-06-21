@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report auto="False"
+                id="report_project_tracking_indicator"
+                model="project.project"
+                name="project_indicators.project_tracking"
+                string="Project Tracking"
+                report_type="qweb-pdf"/>
+
+        <report
+            id="partner_xlsx"
+            model="project.project"
+            string="Project Tracking XLSX"
+            report_type="xlsx"
+            name="project.project.xlsx"
+            file="project.project.xlsx"
+            attachment_use="False"
+        />
+
+    </data>
+</openerp>

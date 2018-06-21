@@ -31,7 +31,8 @@
 {
     "name": "Project indicators",
     "version": "1.0",
-    "author": "Camptocamp,Odoo Community Association (OCA)",
+    "author": "Camptocamp,Odoo Community Association (OCA), "
+            "Serpent Consulting Services Pvt. Ltd.",
     "category": "Generic Modules/Projects & Services",
     "description":
     """
@@ -43,11 +44,11 @@ This modules adds indicators on project :
 - a report for the tracking of the projects (based on report_webkit)
 """,
     "website": "http://camptocamp.com",
-    "depends": ['project',
-                'account_analytic_analysis',
-                'report_webkit'],
-    "data": ['project_view.xml',
-             'report.xml'],
-    "active": False,
-    "installable": False,
+    "depends": ['project_timesheet',
+                'report_webkit',
+                'report_xlsx'],
+    "data": ['views/project_view.xml',
+             'views/report.xml',
+             'report/project_tracking.xml'],
+    "installable": True,
 }
