@@ -20,7 +20,7 @@
 ##############################################################################
 """Changes to allow the dissociate analytic lines wizard to work."""
 
-from openerp import models, api
+from openerp import models, api, fields
 
 
 class AccountAnalyticLine(models.Model):
@@ -28,6 +28,8 @@ class AccountAnalyticLine(models.Model):
     """Hack the analytic line to optionally skip the invoice check."""
 
     _inherit = 'account.analytic.line'
+
+    invoice_id = fields.Many2one("account.invoice", "Invoice")
 
     @api.multi
     def write(self, vals):
