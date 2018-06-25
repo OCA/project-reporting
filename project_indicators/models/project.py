@@ -27,21 +27,21 @@
 #
 ##############################################################################
 
+from odoo import models, fields, api
 
-{
-    "name": "Project indicators",
-    "version": "10.0.1.0.0",
-    "author": "Camptocamp,Odoo Community Association (OCA),"
-            "Serpent Consulting Services Pvt. Ltd.",
-    "category": "Generic Modules/Projects & Services",
-    "license": "AGPL-3",
-    "website": "https://camptocamp.com",
-    "depends": ['hr_timesheet',
-                'report',
-                'report_xlsx'],
-    "data": ['views/project_view.xml',
-             'views/report.xml',
-             'report/project_tracking.xml'],
-    "application": False,
-    "installable": True,
-}
+
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
+
+    @api.multi
+    @api.depends('delay_hours', 'planned_hours')
+    def _get_planning_error(self):
+        for task in self:
+            if task.delay_hours and task.planned_hours:
+                task.planning_error_percentage = round(
+                    100.0 * task.delay_hours / task.planned_hours, 2)
+
+    planning_error_percentage = fields.Float(
+        compute='_get_planning_error', string='Error (%)',
+        group_operator="avg",
+        help="Computed as: Delay Hours / Planned Hours.")

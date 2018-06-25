@@ -27,5 +27,5 @@
 #
 ##############################################################################
 
-from . import project
+from . import models
 from . import report
