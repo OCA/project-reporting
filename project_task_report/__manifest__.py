@@ -6,9 +6,10 @@
 {
     "name": "Project Task Report",
     "summary": "Basic report for project tasks.",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "Eficent, "
-              "Odoo Community Association (OCA)",
+            "Odoo Community Association (OCA),"
+            "Serpent Consulting Services Pvt. Ltd.",
     "website": "https://github.com/OCA/project-reporting",
     "category": "Project Management",
     "depends": ["project"],
