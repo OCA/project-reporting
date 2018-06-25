@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, _
-from openerp import exceptions
+from odoo import models, api, _
+from odoo import exceptions
 
 
 class ProjectProject(models.Model):
@@ -36,7 +36,6 @@ class ProjectProject(models.Model):
             # If we found line linked with account we raise an error
             if account_lines:
                 raise exceptions.Warning(
-                    _('Invalid Action'),
                     _('You cannot delete account %s as there are analytic '
                       'lines linked to it') % project.name)
             else:

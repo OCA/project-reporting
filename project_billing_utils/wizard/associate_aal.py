@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, fields, _
+from odoo import models, api, fields, _
 
 
 class AssociateInvoice(models.TransientModel):

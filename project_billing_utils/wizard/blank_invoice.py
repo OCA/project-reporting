@@ -18,9 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, fields, _
-from openerp.tools.safe_eval import safe_eval
-from openerp import exceptions
+from odoo import models, api, fields, _
+from odoo.tools.safe_eval import safe_eval
+from odoo import exceptions
 
 import time
 
@@ -38,20 +38,13 @@ class CreateInvoicesFromProject(models.TransientModel):
         """
         if not project.partner_id:
             raise exceptions.Warning(
-                _('UserError'),
                 _('The Partner is missing on the project:\n%s') % project.name)
-
-        if not project.pricelist_id:
-            raise exceptions.Warning(
-                _('UserError'),
-                _('The Customer Pricelist is '
-                  'missing on the project:\n%s') % project.name)
 
         partner = project.partner_id
 
         date_due = False
-        if partner.property_payment_term:
-            pterm_list = partner.property_payment_term.compute(
+        if partner.property_payment_term_id:
+            pterm_list = partner.property_payment_term_id.compute(
                 value=1,
                 date_ref=fields.Date.today())
             if pterm_list:
@@ -64,9 +57,9 @@ class CreateInvoicesFromProject(models.TransientModel):
             'type': 'out_invoice',
             'date_due': date_due,
             'partner_id': partner.id,
-            'payment_term': partner.property_payment_term.id or False,
-            'account_id': partner.property_account_receivable.id,
-            'currency_id': project.pricelist_id.currency_id.id,
+            'payment_term': partner.property_payment_term_id.id or False,
+            'account_id': partner.property_account_receivable_id.id,
+            'currency_id': project.currency_id.id,
         }
 
     @api.multi
