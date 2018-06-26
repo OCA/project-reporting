@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
+<odoo>
 
     <record id="view_dissociate_aal_to_invoice" model="ir.ui.view">
-      <field name="name">Dissociate To Invoice</field>
-      <field name="model">dissociate.aal.to.invoice</field>
-      <field name="arch" type="xml">
-        <form string="Dissociate Analytic Lines" version="7.0">
-          <group>
-            <separator string="Dissociate Analytic Lines from invoice ?" colspan="4"/>
-          </group>
-          <footer>
-            <button special="cancel" string="_Cancel" icon="gtk-cancel" />
-            <button name="dissociate_aal" string="_Ok" type="object" icon="gtk-ok"/>
-          </footer>
-        </form>
-      </field>
+        <field name="name">Dissociate To Invoice</field>
+        <field name="model">dissociate.aal.to.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Dissociate Analytic Lines">
+                <group>
+                    <separator string="Dissociate Analytic Lines from invoice ?" colspan="4" />
+                </group>
+                <footer>
+                    <button special="cancel" string="_Cancel" class="fa fa-times" />
+                    <button name="dissociate_aal" string="_Ok" type="object" class="fa fa-check" />
+                </footer>
+            </form>
+        </field>
     </record>
 
     <act_window
@@ -28,5 +27,4 @@
       target="new"
       id="action_dissociate_aal_invoice"/>
 
-  </data>
-</openerp>
+</odoo>

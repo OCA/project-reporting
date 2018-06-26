@@ -1,25 +1,12 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Joël Grand-Guillaume
 #    Copyright 2010 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 ##############################################################################
-from openerp import models, api
-from openerp.tools.safe_eval import safe_eval
+
+from odoo import models, api
+from odoo.tools.safe_eval import safe_eval
 
 
 class OpenInvoicesFromProject(models.TransientModel):
@@ -31,9 +18,6 @@ class OpenInvoicesFromProject(models.TransientModel):
         aa_obj = self.env['project.project']
 
         active_ids = self.env.context.get('active_ids', False)
-#         aa_rs = self.env['account.analytic.account']
-#         for project in aa_obj.browse(active_ids):
-#             aa_rs += project.analytic_account_id
         aa_rs = aa_obj.browse(active_ids).mapped('analytic_account_id')
 
         # Use a SQL request because we can't do that so easily with the ORM

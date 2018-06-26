@@ -1,26 +1,13 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Joël Grand-Guillaume
 #    Copyright 2010 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 ##############################################################################
-from openerp import models, api, fields, _
-from openerp.tools.safe_eval import safe_eval
-from openerp import exceptions
+
+from odoo import models, api, fields, _
+from odoo.tools.safe_eval import safe_eval
+from odoo import exceptions
 
 import time
 
@@ -41,17 +28,11 @@ class CreateInvoicesFromProject(models.TransientModel):
                 _('UserError'),
                 _('The Partner is missing on the project:\n%s') % project.name)
 
-        if not project.pricelist_id:
-            raise exceptions.Warning(
-                _('UserError'),
-                _('The Customer Pricelist is '
-                  'missing on the project:\n%s') % project.name)
-
         partner = project.partner_id
 
         date_due = False
-        if partner.property_payment_term:
-            pterm_list = partner.property_payment_term.compute(
+        if partner.property_payment_term_id:
+            pterm_list = partner.property_payment_term_id.compute(
                 value=1,
                 date_ref=fields.Date.today())
             if pterm_list:
@@ -64,9 +45,9 @@ class CreateInvoicesFromProject(models.TransientModel):
             'type': 'out_invoice',
             'date_due': date_due,
             'partner_id': partner.id,
-            'payment_term': partner.property_payment_term.id or False,
-            'account_id': partner.property_account_receivable.id,
-            'currency_id': project.pricelist_id.currency_id.id,
+            'payment_term': partner.property_payment_term_id.id or False,
+            'account_id': partner.property_account_receivable_id.id,
+            'currency_id': project.currency_id.id,
         }
 
     @api.multi

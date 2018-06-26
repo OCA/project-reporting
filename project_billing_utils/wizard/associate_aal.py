@@ -1,24 +1,11 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Joël Grand-Guillaume
 #    Copyright 2010 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 ##############################################################################
-from openerp import models, api, fields, _
+
+from odoo import models, api, fields, _
 
 
 class AssociateInvoice(models.TransientModel):
@@ -32,7 +19,7 @@ class AssociateInvoice(models.TransientModel):
         aal_obj = self.env[self.env.context['active_model']]
         aal_ids = self.env.context.get('active_ids', False)
         aal_rs = aal_obj.browse(aal_ids)
-        aal_rs.write({'invoice_id': self.invoice_id.id})
+        aal_rs.write({'timesheet_invoice_id': self.invoice_id.id})
         return {
             'domain': "[('id','in', [%s])]" % (self.invoice_id.id,),
             'name': _('Associated invoice'),
