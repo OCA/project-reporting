@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="project_tracking">
+        <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="project">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br/>
+                        <br/>
+                        <div style="text-align:center"><b>Project:<t t-esc="project.name"/></b></div>
+                        <br/>
+                        <table class="table table-bordered table-condensed" width="100%">
+                            <tr style="background-color:#D9D8CA;">
+                                <td style="border: 1px solid #000000;text-align:center;width:100%;" colspan="2"><b>Total (With Timesheets)</b></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <br/>
+                        <table class="table table-bordered table-condensed" width="100%">
+                            <tr style="background-color:#D9D8CA;text-align:center;">
+                                <td style="border: 1px solid #000000;"><b>Task</b></td>
+                                <td style="border: 1px solid #000000;"><b>Status</b></td>
+                                <td style="border: 1px solid #000000;"><b>Hours Spent</b></td>
+                                <td style="border: 1px solid #000000;"><b>Remaining Hours</b></td>
+                                <td style="border: 1px solid #000000;"><b>Total Hours</b></td>
+                                <td style="border: 1px solid #000000;"><b>Planned Hours</b></td>
+                                <td style="border: 1px solid #000000;"><b>Delay Hours</b></td>
+                                <td style="border: 1px solid #000000;"><b>Error (%)</b></td>
+                            </tr>
+                            <tr style="text-align:center;" t-foreach="project.tasks" t-as="task">
+                                <td style="border: 1px solid #000000;"><span t-esc="task.name"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="task.stage_id and task.stage_id.name or ''"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task.effective_hours)"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="task.remaining_hours &lt; 0 and 'exceeded' or ''"/><span t-esc="float_time_convert(task.remaining_hours)"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task.total_hours)"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task.planned_hours)"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task.delay_hours)"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="task.planning_error_percentage or 0"/></td>
+                            </tr>
+                            <tr style="text-align:center;" t-foreach="total_project(project)" t-as="task_total">
+                                <td style="border: 1px solid #000000;" colspan="2"><b>Totals</b></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task_total['effective_hours'])"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task_total['total_hours'] - task_total['effective_hours'])"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task_total['total_hours'])"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task_total['planned_hours'])"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="float_time_convert(task_total['total_hours'] - task_total['planned_hours'])"/></td>
+                                <td style="border: 1px solid #000000;"><span t-esc="task_total['planned_hours'] and round((task_total['total_hours'] - task_total['planned_hours']) / task_total['planned_hours'] * 100, 2) or 0"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
