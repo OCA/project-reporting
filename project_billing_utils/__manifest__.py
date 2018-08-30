@@ -9,8 +9,7 @@
     'name': 'Analytic and project wizard for service companies',
     'version': '11.0.1.0.0',
     'category': 'Generic Modules/Projects & Services',
-    'author': "Camptocamp,Odoo Community Association (OCA),"
-            "Serpent Consulting Services Pvt. Ltd.",
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'https://www.camptocamp.com',
     'depends': ['project',
                 'hr_timesheet',
