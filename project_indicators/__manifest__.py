@@ -9,8 +9,7 @@
 {
     "name": "Project indicators",
     "version": "11.0.1.0.0",
-    "author": "Camptocamp,Odoo Community Association (OCA),"
-            "Serpent Consulting Services Pvt. Ltd.",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "category": "Generic Modules/Projects & Services",
     "website": "http://camptocamp.com",
     "license": "AGPL-3",
