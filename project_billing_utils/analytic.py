@@ -31,7 +31,7 @@ class AccountAnalyticLine(orm.Model):
 
     def write(self, cr, uid, ids, vals, context=None):
         """Put a key in the vals, since we have no context. Return super."""
-        if context.get('skip_invoice_check'):
+        if context and context.get('skip_invoice_check'):
             vals['_x_vals_skip_invoice_check'] = True
         return super(AccountAnalyticLine, self).write(
             cr, uid, ids, vals, context=context)
