@@ -10,11 +10,8 @@
     'version': '11.0.1.0.0',
     'category': 'Generic Modules/Projects & Services',
     'author': "Camptocamp,Odoo Community Association (OCA)",
-    'website': 'https://www.camptocamp.com',
-    'depends': ['project',
-                'hr_timesheet',
-                'account',
-                'sale_timesheet'],
+    'website': 'https://github.com/OCA/project-reporting',
+    'depends': ['hr_timesheet', 'sale_timesheet'],
     'license': 'AGPL-3',
     'data': [
         'views/invoice_view.xml',

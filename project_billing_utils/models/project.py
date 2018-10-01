@@ -6,7 +6,7 @@
 ##############################################################################
 
 from odoo import models, api, _
-from odoo import exceptions
+from odoo.exceptions import UserError
 
 
 class ProjectProject(models.Model):
@@ -22,9 +22,8 @@ class ProjectProject(models.Model):
                 [('account_id', '=', project.analytic_account_id.id)])
             # If we found line linked with account we raise an error
             if account_lines:
-                raise exceptions.Warning(
-                    _('Invalid Action'),
-                    _('You cannot delete account %s as there are analytic '
+                raise UserError(
+                    _('You cannot delete project %s as there are analytic '
                       'lines linked to it') % project.name)
             else:
                 super(ProjectProject, project).unlink()

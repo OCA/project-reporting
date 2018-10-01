@@ -57,17 +57,15 @@ class CreateInvoicesFromProject(models.TransientModel):
 
         project_obj = self.env['project.project']
         invoice_obj = self.env['account.invoice']
-
-        invoices = self.env['account.invoice']
         for project in project_obj.browse(self.env.context['active_ids'],):
             values = self._prepare_invoice(project)
             last_invoice = invoice_obj.create(values)
-            invoices += last_invoice
+            invoice_obj += last_invoice
 
         xml_id = 'action_invoice_tree1'
         view = self.env.ref('account.%s' % xml_id)
         result = view.read()[0]
         invoice_domain = safe_eval(result.get('domain', []))
-        invoice_domain.append(('id', 'in', invoices.ids))
+        invoice_domain.append(('id', 'in', invoice_obj.ids))
         result['domain'] = invoice_domain
         return result
