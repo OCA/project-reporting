@@ -1,22 +1,24 @@
+language: python
 sudo: false
 cache: pip
 
+python:
+- "3.5"
+
 addons:
+  postgresql: "9.5"
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
-      - python-lxml # because pip installation is slow
-
-language: python
-
-python:
-  - "3.5"
 
 env:
-  - VERSION="11.0" LINT_CHECK="1"
-  - VERSION="11.0" ODOO_REPO="OCA/OCB" LINT_CHECK="0"
-  - VERSION="11.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
+  global:
+  - VERSION="11.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
 
+  matrix:
+  - LINT_CHECK="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
@@ -27,4 +29,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success
