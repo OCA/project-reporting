@@ -65,7 +65,7 @@
                                         <div t-if="msg.subject"><span t-field="msg.subject"/>: </div>
                                         <div t-if="msg.message_type == 'notification'">
                                             <span t-field="msg.subtype_id.name"/>
-                                            <t t-foreach='msg.tracking_value_ids' t-as='value'>
+                                            <t t-foreach='msg.sudo().tracking_value_ids' t-as='value'>
                                                 <li>
                                                     <t t-esc="value.field_desc"/>:
                                                     <span> <t t-esc="value.new_value_char"/> </span>
