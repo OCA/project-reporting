@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-03-02 11:13+0000\n"
+"PO-Revision-Date: 2020-03-02 15:13+0000\n"
 "Last-Translator: alvaro-domatix <alvaro@domatix.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -31,7 +31,7 @@ msgstr "Fecha de asignación"
 #. module: project_task_report
 #: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
 msgid "Chatter"
-msgstr ""
+msgstr "Chatter"
 
 #. module: project_task_report
 #: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
@@ -65,7 +65,7 @@ msgstr "Imprimir Tarea"
 #. module: project_task_report
 #: model:ir.actions.report,name:project_task_report.report_project_task_chatter_action
 msgid "Print Task and Chatter"
-msgstr "Imprimir tarea y chatter"
+msgstr "Imprimir Tarea y Chatter"
 
 #. module: project_task_report
 #: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
