@@ -48,9 +48,11 @@
                                 </td>
                             </tr>
                         </table>
-                        <center><h3>Description</h3></center>
-                        <span t-field="o.description"/>
-                        <hr/>
+                        <t t-if="o.description">
+                            <center><h3>Description</h3></center>
+                            <span t-field="o.description"/>
+                            <hr/>
+                        </t>
                         <center><h3>Chatter</h3></center>
                         <table>
                             <t t-foreach="o.message_ids" t-as="msg">

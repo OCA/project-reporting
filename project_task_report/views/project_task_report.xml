@@ -48,8 +48,10 @@
                                 </td>
                             </tr>
                         </table>
+                        <t t-if="o.description">
                             <center><h3>Description</h3></center>
                             <span t-field="o.description"/>
+                        </t>
                     </div>
                 </t>
             </t>
