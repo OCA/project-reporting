@@ -6,16 +6,12 @@
     "name": "Project Task Report",
     "summary": "Basic report for project tasks.",
     "version": "12.0.1.0.0",
-    "author": "Eficent, "
-            "Odoo Community Association (OCA)",
+    "author": "Eficent, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/project-reporting",
     "category": "Project Management",
     "depends": ["project"],
-    "data": [
-        'views/project_task_report.xml',
-        'views/project_task_chatter_report.xml',
-    ],
+    "data": ["views/project_task_report.xml", "views/project_task_chatter_report.xml",],
     "license": "AGPL-3",
-    'installable': True,
-    'application': False,
+    "installable": True,
+    "application": False,
 }
