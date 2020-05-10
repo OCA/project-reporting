@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_task_report
+# 	* project_task_report
 #
 msgid ""
 msgstr ""
@@ -17,43 +17,43 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Assigned to"
 msgstr "Asignada a"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Assigning Date"
 msgstr "Fecha de asignación"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
 msgid "Chatter"
 msgstr "Chatter"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Deadline"
 msgstr "Fecha límite"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Description"
 msgstr "Descripción"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Last Stage Update"
 msgstr "Última actualización de la etapa"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Partner"
 msgstr "Cliente"
 
@@ -68,19 +68,19 @@ msgid "Print Task and Chatter"
 msgstr "Imprimir Tarea y Chatter"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Project"
 msgstr "Proyecto"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Tags"
 msgstr "Etiquetas"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Task:"
 msgstr "Tarea:"
