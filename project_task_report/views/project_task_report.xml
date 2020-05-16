@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="task_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br />
+                        <br />
+                        <center>
+                            <h2>Task: <span t-field="o.name" /></h2>
+                        </center>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Project</th>
+                                <td>
+                                    <span t-field="o.project_id.name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Assigned to</th>
+                                <td>
+                                    <span t-field="o.user_id.name" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.date_deadline">
+                                <th>Deadline</th>
+                                <td>
+                                    <span t-esc="o.date_deadline" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.date_assign">
+                                <th>Assigning Date</th>
+                                <td>
+                                    <span t-esc="o.date_assign" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.date_last_stage_update">
+                                <th>Last Stage Update</th>
+                                <td>
+                                    <span t-field="o.date_last_stage_update" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.partner_id">
+                                <th>Partner</th>
+                                <td>
+                                    <span t-field="o.partner_id" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.tag_ids">
+                                <th>Tags</th>
+                                <td>
+                                    <span>| </span>
+                                    <t t-foreach="o.tag_ids" t-as="tag">
+                                        <span t-field="tag.name" />
+                                        <span>| </span>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="o.description">
+                            <center>
+                                <h3>Description</h3>
+                            </center>
+                            <span t-field="o.description" />
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <report
+        id="report_project_task_action"
+        model="project.task"
+        name="project_task_report.task_report"
+        string="Print Task"
+        report_type="qweb-pdf"
+        multi="False"
+    />
+</odoo>
