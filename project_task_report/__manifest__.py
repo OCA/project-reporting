@@ -5,7 +5,7 @@
 {
     "name": "Project Task Report",
     "summary": "Basic report for project tasks.",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.1.0",
     "author": "Eficent, "
             "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/project-reporting",
