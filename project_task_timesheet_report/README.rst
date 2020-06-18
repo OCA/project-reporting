@@ -25,7 +25,7 @@ Project Task Report with Timesheet
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds a timesheets and hours information to the reports created in 
+This module adds a timesheets and hours information to the reports created in
 project_task_report module.
 
 **Table of contents**
