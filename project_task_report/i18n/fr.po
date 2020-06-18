@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* project_task_report
+# 	* project_task_report
 #
 msgid ""
 msgstr ""
@@ -15,43 +15,43 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Assigned to"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Assigning Date"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
 msgid "Chatter"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Deadline"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Description"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Last Stage Update"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Partner"
 msgstr ""
 
@@ -66,19 +66,19 @@ msgid "Print Task and Chatter"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Project"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Tags"
 msgstr ""
 
 #. module: project_task_report
-#: model:ir.ui.view,arch_db:project_task_report.task_chatter_report
-#: model:ir.ui.view,arch_db:project_task_report.task_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Task:"
 msgstr ""
