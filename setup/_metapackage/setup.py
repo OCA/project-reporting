@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-project_task_report',
+        'odoo13-addon-project_task_timesheet_report',
     ],
     classifiers=[
         'Programming Language :: Python',
