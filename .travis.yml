@@ -16,7 +16,7 @@ python:
 env:
   - VERSION="12.0" LINT_CHECK="1"
   - VERSION="12.0" ODOO_REPO="OCA/OCB" LINT_CHECK="0"
-  - VERSION="12.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0"
+  - VERSION="12.0" ODOO_REPO="odoo/odoo" LINT_CHECK="0" MAKEPOT="1"
 
 
 install:
