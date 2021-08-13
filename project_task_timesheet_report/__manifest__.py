@@ -14,6 +14,7 @@
         'views/project_task_report.xml',
         'views/project_task_chatter_report.xml',
     ],
+    "maintainers": ["cubells"],
     "license": "LGPL-3",
     'installable': True,
     'application': False,
