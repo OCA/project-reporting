@@ -22,7 +22,9 @@
                             <tr>
                                 <th>Assigned to</th>
                                 <td>
-                                    <span t-field="o.user_id.name" />
+                                    <span
+                                        t-esc="', '.join(o.user_ids.mapped('name'))"
+                                    />
                                 </td>
                             </tr>
                             <tr t-if="o.date_deadline">
@@ -71,12 +73,16 @@
             </t>
         </t>
     </template>
-    <report
-        id="report_project_task_action"
-        model="project.task"
-        name="project_task_report.task_report"
-        string="Print Task"
-        report_type="qweb-pdf"
-        multi="False"
-    />
+    <record id="report_project_task_action" model="ir.actions.report">
+        <field name="name">Print Task</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">project_task_report.task_report</field>
+        <field name="report_file">project_task_report.task_report</field>
+        <field
+            name="print_report_name"
+        >'Task #%s - %s' % (object.id, object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_task" />
+        <field name="binding_type">report</field>
+    </record>
 </odoo>
