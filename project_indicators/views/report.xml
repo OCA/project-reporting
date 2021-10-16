@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <report auto="False"
+                id="report_project_tracking_indicator"
+                model="project.project"
+                name="project_indicators.project_tracking"
+                string="Project Tracking"
+                report_type="qweb-pdf"/>
+
+</odoo>
