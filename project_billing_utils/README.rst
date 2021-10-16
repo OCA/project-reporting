@@ -42,6 +42,7 @@ Contributors
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Vincent Renaville <vincent.renaville@camptocamp.com>
 * Damien Crier <damien.crier@camptocamp.com>
+* Serpent Consulting Services Pvt. Ltd. <contact@serpentcs.com>
 
 Maintainer
 ----------

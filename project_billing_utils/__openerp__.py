@@ -20,22 +20,22 @@
 ##############################################################################
 {
     'name': 'Analytic and project wizard for service companies',
-    'version': '8.0.1.4',
+    'version': '9.0.1.0.0',
     'category': 'Generic Modules/Projects & Services',
-    'author': "Camptocamp,Odoo Community Association (OCA)",
+    'author': 'Camptocamp,Odoo Community Association (OCA),'
+            'Serpent Consulting Services Pvt. Ltd.',
     'website': 'http://www.camptocamp.com',
-    'depends': ['project',
-                'hr_timesheet_invoice',
-                'project_analytic_line_view'],
+    'license': 'AGPL-3',
+    'depends': ['project', 'hr_timesheet'],
     'data': [
-        'invoice_view.xml',
-        'project_view.xml',
+        'views/invoice_view.xml',
+        'views/project_view.xml',
         'wizard/associate_aal_view.xml',
         'wizard/dissociate_aal_view.xml',
         'wizard/open_invoices_view.xml',
         'wizard/blank_invoice_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
