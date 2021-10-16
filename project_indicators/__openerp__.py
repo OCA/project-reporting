@@ -49,5 +49,5 @@ This modules adds indicators on project :
     "data": ['project_view.xml',
              'report.xml'],
     "active": False,
-    "installable": False,
+    "installable": True,
 }
