@@ -19,7 +19,7 @@
 #
 ##############################################################################
 """Introduce a wizard to dissociate an Analytic Line from an Invoice."""
-from openerp import models, api
+from odoo import models, api
 
 
 class DissociateInvoice(models.TransientModel):

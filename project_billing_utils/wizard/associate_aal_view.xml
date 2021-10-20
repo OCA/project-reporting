@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
+<odoo>
 
     <record id="view_associate_aal_to_invoice" model="ir.ui.view">
       <field name="name">Associate To Invoice</field>
       <field name="model">associate.aal.to.invoice</field>
       <field name="arch" type="xml">
-        <form string="Associate Analytic Lines" version="7.0">
-          <group>
+        <form string="Associate Analytic Lines">
+          <group colspan="4" col="4">
             <separator string="Associate Analytic Lines to invoice ?" colspan="4"/>
             <field name="invoice_id" context="{'special_search':True}" domain="[('type','in',('out_invoice','in_invoice'))]"/>
           </group>
           <footer>
-            <button special="cancel" string="_Cancel" icon="gtk-cancel" />
-            <button name="associate_aal" string="_Ok" type="object" icon="gtk-ok"/>
+            <button special="cancel" string="_Cancel" class="fa fa-times" />
+            <button name="associate_aal" string="_Ok" type="object" class="fa fa-check"/>
           </footer>
         </form>
       </field>
@@ -29,5 +28,4 @@
       target="new"
       id="action_associate_invoice"/>
 
-  </data>
-</openerp>
+</odoo>
