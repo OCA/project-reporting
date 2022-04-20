@@ -4,7 +4,7 @@
 {
     "name": "Project Task Report with Timesheet",
     "summary": "Basic report for project tasks with timesheets.",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "Jarsa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/project-reporting",
     "category": "Project Management",
