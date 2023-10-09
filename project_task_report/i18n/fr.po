@@ -15,6 +15,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: project_task_report
+#: model:ir.actions.report,print_report_name:project_task_report.report_project_task_action
+#: model:ir.actions.report,print_report_name:project_task_report.report_project_task_chatter_action
+msgid "'Task #%s - %s' % (object.id, object.name)"
+msgstr ""
+
+#. module: project_task_report
 #: model_terms:ir.ui.view,arch_db:project_task_report.task_chatter_report
 #: model_terms:ir.ui.view,arch_db:project_task_report.task_report
 msgid "Assigned to"
