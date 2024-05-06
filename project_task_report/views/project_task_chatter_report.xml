@@ -7,75 +7,11 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <br />
-                        <br />
-                        <center>
-                            <h2><span
-                                    t-esc="o.project_id and o.project_id.label_tasks or 'Task'"
-                                />: <span t-field="o.name" /></h2>
-
-                        </center>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Project</th>
-                                <td>
-                                    <span t-field="o.project_id.name" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Assigned to</th>
-                                <td>
-                                    <span
-                                        t-esc="', '.join(o.user_ids.mapped('name'))"
-                                    />
-                                </td>
-                            </tr>
-                            <tr t-if="o.date_deadline">
-                                <th>Deadline</th>
-                                <td>
-                                    <span t-esc="o.date_deadline" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.date_assign">
-                                <th>Assigning Date</th>
-                                <td>
-                                    <span t-esc="o.date_assign" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.date_last_stage_update">
-                                <th>Last Stage Update</th>
-                                <td>
-                                    <span t-field="o.date_last_stage_update" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.partner_id">
-                                <th>Partner</th>
-                                <td>
-                                    <span t-field="o.partner_id" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.tag_ids">
-                                <th>Tags</th>
-                                <td>
-                                    <span>| </span>
-                                    <t t-foreach="o.tag_ids" t-as="tag">
-                                        <span t-field="tag.name" />
-                                        <span>| </span>
-                                    </t>
-                                </td>
-                            </tr>
-                        </table>
-                        <t t-if="o.description">
-                            <center>
-                                <h3>Description</h3>
-                            </center>
-                            <span t-field="o.description" />
-                            <hr />
-                        </t>
+                        <t t-call="project_task_report.task_report_base" />
                         <center>
                             <h3>Chatter</h3>
                         </center>
-                        <table>
+                        <table class="table">
                             <t t-foreach="o.message_ids" t-as="msg">
                                 <tr>
                                     <td style="padding-right: 1cm; font-weight:bold;">
@@ -96,10 +32,26 @@
                                                 t-as='value'
                                             >
                                                 <li>
-                                                    <t t-esc="value.field_desc" />:
+                                                    <t
+                                                        t-out="value.field_id.field_description"
+                                                    />:
                                                     <span>
                                                         <t
-                                                            t-esc="value.new_value_char"
+                                                            t-if="not value.old_value_char"
+                                                        >False</t>
+                                                        <t
+                                                            t-else=""
+                                                            t-out="value.old_value_char"
+                                                        />
+                                                        <i
+                                                            class="fa fa-long-arrow-right"
+                                                        />
+                                                        <t
+                                                            t-if="not value.new_value_char"
+                                                        >False</t>
+                                                        <t
+                                                            t-else=""
+                                                            t-out="value.new_value_char"
                                                         />
                                                     </span>
                                                 </li>
