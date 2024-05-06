@@ -2,13 +2,13 @@
 <!-- Copyright 2020 Jarsa
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
-    <template id="task_report" inherit_id="project_task_report.task_report">
+    <template id="task_report" inherit_id="project_task_report.task_report_base">
         <xpath expr="//table" position="inside">
-            <tr t-if="o.planned_hours">
+            <tr t-if="o.allocated_hours">
                 <th>Planned Hours</th>
                 <td>
                     <span
-                        t-esc="o.planned_hours"
+                        t-out="o.allocated_hours"
                         t-options="{'widget': 'float_time'}"
                     />
                 </td>
@@ -17,7 +17,7 @@
                 <th>Effective Hours</th>
                 <td>
                     <span
-                        t-esc="o.effective_hours"
+                        t-out="o.effective_hours"
                         t-options="{'widget': 'float_time'}"
                     />
                 </td>
@@ -26,13 +26,13 @@
                 <th>Remaining Hours</th>
                 <td>
                     <span
-                        t-esc="o.remaining_hours"
+                        t-out="o.remaining_hours"
                         t-options="{'widget': 'float_time'}"
                     />
                 </td>
             </tr>
         </xpath>
-        <xpath expr="//div[hasclass('page')]" position="inside">
+        <xpath expr="//t[@t-if='o.description']" position="after">
             <t t-if="o.timesheet_ids">
                 <table class="table table-bordered">
                     <center>
@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <span
-                                    t-esc="timesheet.unit_amount"
+                                    t-out="timesheet.unit_amount"
                                     t-options="{'widget': 'float_time'}"
                                 />
                             </td>
