@@ -7,102 +7,47 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <br />
-                        <br />
-                        <center>
-                            <h2><span
-                                t-esc="o.project_id and o.project_id.label_tasks or 'Task'"
-                            />: <span t-field="o.name" /></h2>
-                        </center>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>Project</th>
-                                <td>
-                                    <span t-field="o.project_id.name" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Assigned to</th>
-                                <td>
-                                    <span
-                                        t-esc="', '.join(o.user_ids.mapped('name'))"
-                                    />
-                                </td>
-                            </tr>
-                            <tr t-if="o.date_deadline">
-                                <th>Deadline</th>
-                                <td>
-                                    <span t-esc="o.date_deadline" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.date_assign">
-                                <th>Assigning Date</th>
-                                <td>
-                                    <span t-esc="o.date_assign" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.date_last_stage_update">
-                                <th>Last Stage Update</th>
-                                <td>
-                                    <span t-field="o.date_last_stage_update" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.partner_id">
-                                <th>Partner</th>
-                                <td>
-                                    <span t-field="o.partner_id" />
-                                </td>
-                            </tr>
-                            <tr t-if="o.tag_ids">
-                                <th>Tags</th>
-                                <td>
-                                    <span>| </span>
-                                    <t t-foreach="o.tag_ids" t-as="tag">
-                                        <span t-field="tag.name" />
-                                        <span>| </span>
-                                    </t>
-                                </td>
-                            </tr>
-                        </table>
-                        <t t-if="o.description">
-                            <center>
-                                <h3>Description</h3>
-                            </center>
-                            <span t-field="o.description" />
-                            <hr />
-                        </t>
-                        <center>
-                            <h3>Chatter</h3>
-                        </center>
+                        <t t-call="project_task_report.task_report_document" />
+
+                        <h3 class="text-center">Chatter</h3>
                         <table>
                             <t t-foreach="o.message_ids" t-as="msg">
                                 <tr>
-                                    <td style="padding-right: 1cm; font-weight:bold;">
-                                        <span t-field="msg.author_id" />
-                                        <br />
-                                        <div style="font-size:75%; padding-left: 3mm;">
+                                    <td class="fw-bold">
+                                        <p class="m-2 mb-0" t-field="msg.author_id" />
+                                        <small class="ps-3">
                                             (<span t-field="msg.date" />)
-                                        </div>
+                                        </small>
                                     </td>
                                     <td>
-                                        <div t-if="msg.subject"><span
-                                            t-field="msg.subject"
-                                        />: </div>
-                                        <div t-if="msg.message_type == 'notification'">
-                                            <span t-field="msg.subtype_id.name" />
+                                        <t t-if="msg.subject">
+                                            <span
+                                            class="m-2 me-0"
+                                            t-esc="msg.subject"
+                                        />:
+                                        </t>
+                                        <t t-if="msg.message_type == 'notification'">
+                                            <p
+                                                class="m-2 mb-0"
+                                                t-field="msg.subtype_id.name"
+                                            />
                                             <t
-                                                t-foreach='msg.sudo().tracking_value_ids'
-                                                t-as='value'
+                                                t-foreach="msg.sudo().tracking_value_ids"
+                                                t-as="value"
                                             >
-                                                <li>
-                                                    <t t-esc="value.field_desc" />:
-                                                    <span>
-                                                    <t t-esc="value.new_value_char" />
-                                                </span>
+                                                <li class="ps-3">
+                                                    <span
+                                                    t-esc="value.field_id.field_description"
+                                                />:
+                                                    <span
+                                                    t-esc="value.new_value_char"
+                                                />
                                                 </li>
                                             </t>
+                                        </t>
+                                        <div class="ps-3">
+                                            <span t-field="msg.body" />
                                         </div>
-                                        <span t-field="msg.body" />
                                     </td>
                                 </tr>
                             </t>
@@ -112,6 +57,7 @@
             </t>
         </t>
     </template>
+
     <record id="report_project_task_chatter_action" model="ir.actions.report">
         <field name="name">Print Task and Chatter</field>
         <field name="model">project.task</field>
