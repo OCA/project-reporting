@@ -11,8 +11,8 @@
                         <br />
                         <center>
                             <h2><span
-                                    t-esc="o.project_id and o.project_id.label_tasks or 'Task'"
-                                />: <span t-field="o.name" /></h2>
+                                t-esc="o.project_id and o.project_id.label_tasks or 'Task'"
+                            />: <span t-field="o.name" /></h2>
                         </center>
                         <table class="table table-bordered">
                             <tr>
