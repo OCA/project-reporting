@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="task_chatter_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-call="project_task_report.task_report_base" />
+                        <center>
+                            <h3>Chatter</h3>
+                        </center>
+                        <table class="table">
+                            <t t-foreach="o.message_ids" t-as="msg">
+                                <tr>
+                                    <td style="padding-right: 1cm; font-weight:bold;">
+                                        <span t-field="msg.author_id" />
+                                        <br />
+                                        <div style="font-size:75%; padding-left: 3mm;">
+                                            (<span t-field="msg.date" />)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div t-if="msg.subject"><span
+                                                t-field="msg.subject"
+                                            />: </div>
+                                        <div t-if="msg.message_type == 'notification'">
+                                            <span t-field="msg.subtype_id.name" />
+                                            <t
+                                                t-foreach='msg.sudo().tracking_value_ids'
+                                                t-as='value'
+                                            >
+                                                <li>
+                                                    <t
+                                                        t-out="value.field_id.field_description"
+                                                    />:
+                                                    <span>
+                                                        <t
+                                                            t-if="not value.old_value_char"
+                                                        >False</t>
+                                                        <t
+                                                            t-else=""
+                                                            t-out="value.old_value_char"
+                                                        />
+                                                        <i
+                                                            class="fa fa-long-arrow-right"
+                                                        />
+                                                        <t
+                                                            t-if="not value.new_value_char"
+                                                        >False</t>
+                                                        <t
+                                                            t-else=""
+                                                            t-out="value.new_value_char"
+                                                        />
+                                                    </span>
+                                                </li>
+                                            </t>
+                                        </div>
+                                        <span t-field="msg.body" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <record id="report_project_task_chatter_action" model="ir.actions.report">
+        <field name="name">Print Task and Chatter</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">project_task_report.task_chatter_report</field>
+        <field name="report_file">project_task_report.task_chatter_report</field>
+        <field
+            name="print_report_name"
+        >'Task #%s - %s' % (object.id, object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_task" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
