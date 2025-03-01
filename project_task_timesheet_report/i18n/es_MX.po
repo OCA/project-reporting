@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_task_timesheet_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-06-18 17:19+0000\n"
+"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Date"
+msgstr "Fecha"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Description"
+msgstr "Descripción"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Duration"
+msgstr "Duración"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Effective Hours"
+msgstr "Horas Efectivas"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Planned Hours"
+msgstr "Horas Planeadas"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Remaining Hours"
+msgstr "Horas Restantes"
+
+#. module: project_task_timesheet_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_chatter_report
+#: model_terms:ir.ui.view,arch_db:project_task_timesheet_report.task_report
+msgid "Timesheets"
+msgstr "Registro de Horas"
