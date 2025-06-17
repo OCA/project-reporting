@@ -10,9 +10,12 @@
                         <br />
                         <br />
                         <center>
-                            <h2><span
-                                    t-esc="o.project_id and o.project_id.label_tasks or 'Task'"
-                                />: <span t-field="o.name" /></h2>
+                            <h2>
+                                <span
+                                    t-out="o.project_id and o.project_id.label_tasks or 'Task'"
+                                />:
+                                <span t-field="o.name" />
+                            </h2>
                         </center>
                         <table class="table table-bordered">
                             <tr>
@@ -25,20 +28,20 @@
                                 <th>Assigned to</th>
                                 <td>
                                     <span
-                                        t-esc="', '.join(o.user_ids.mapped('name'))"
+                                        t-out="', '.join(o.user_ids.mapped('name'))"
                                     />
                                 </td>
                             </tr>
                             <tr t-if="o.date_deadline">
                                 <th>Deadline</th>
                                 <td>
-                                    <span t-esc="o.date_deadline" />
+                                    <span t-out="o.date_deadline" />
                                 </td>
                             </tr>
                             <tr t-if="o.date_assign">
                                 <th>Assigning Date</th>
                                 <td>
-                                    <span t-esc="o.date_assign" />
+                                    <span t-out="o.date_assign" />
                                 </td>
                             </tr>
                             <tr t-if="o.date_last_stage_update">
