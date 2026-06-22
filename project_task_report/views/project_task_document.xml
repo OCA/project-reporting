@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="task_report_document">
+        <h2 class="mt-5 pt-5 text-center">
+            <span t-esc="o.project_id and o.project_id.label_tasks or 'Task'" />:
+            <span t-field="o.name" />
+        </h2>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    <strong class="m-2">Project</strong>
+                </th>
+                <td>
+                    <span t-field="o.project_id.name" />
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong class="m-2">Assigned to</strong>
+                </th>
+                <td>
+                    <span t-esc="', '.join(o.user_ids.mapped('name'))" />
+                </td>
+            </tr>
+            <tr t-if="o.date_deadline">
+                <th>
+                    <strong class="m-2">Deadline</strong>
+                </th>
+                <td>
+                    <span t-field="o.date_deadline" />
+                </td>
+            </tr>
+            <tr t-if="o.date_assign">
+                <th>
+                    <strong class="m-2">Assigning Date</strong>
+                </th>
+                <td>
+                    <span t-field="o.date_assign" />
+                </td>
+            </tr>
+            <tr t-if="o.date_last_stage_update">
+                <th>
+                    <strong class="m-2">Last Stage Update</strong>
+                </th>
+                <td>
+                    <span t-field="o.date_last_stage_update" />
+                </td>
+            </tr>
+            <tr t-if="o.partner_id">
+                <th>
+                    <strong class="m-2">Partner</strong>
+                </th>
+                <td>
+                    <span t-field="o.partner_id" />
+                </td>
+            </tr>
+            <tr t-if="o.tag_ids">
+                <th>
+                    <strong class="m-2">Tags</strong>
+                </th>
+                <td>
+                    <span>| </span>
+                    <t t-foreach="o.tag_ids" t-as="tag">
+                        <span t-field="tag.name" />
+                        <span>| </span>
+                    </t>
+                </td>
+            </tr>
+        </table>
+
+        <t t-if="o.description">
+            <h3 class="text-center">Description</h3>
+            <span t-field="o.description" />
+            <hr />
+        </t>
+    </template>
+</odoo>
