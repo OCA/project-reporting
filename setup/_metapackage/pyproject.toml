@@ -1,0 +1,11 @@
+[project]
+name = "odoo-addons-oca-project-reporting"
+version = "18.0.20260622.0"
+dependencies = [
+    "odoo-addon-project_task_report==18.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 18.0",
+]
