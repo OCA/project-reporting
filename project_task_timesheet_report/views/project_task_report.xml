@@ -2,7 +2,7 @@
 <!-- Copyright 2020 Jarsa
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
-    <template id="task_report" inherit_id="project_task_report.task_report_base">
+    <template id="task_report" inherit_id="project_task_report.task_report_document">
         <xpath expr="//table" position="inside">
             <tr t-if="o.allocated_hours">
                 <th>Planned Hours</th>
