@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -23,7 +23,7 @@
                                         <t t-if="msg.subject">
                                             <span
                                             class="m-2 me-0"
-                                            t-esc="msg.subject"
+                                            t-out="msg.subject"
                                         />:
                                         </t>
                                         <t t-if="msg.message_type == 'notification'">
@@ -37,10 +37,10 @@
                                             >
                                                 <li class="ps-3">
                                                     <span
-                                                    t-esc="value.field_id.field_description"
+                                                    t-out="value.field_id.field_description"
                                                 />:
                                                     <span
-                                                    t-esc="value.new_value_char"
+                                                    t-out="value.new_value_char"
                                                 />
                                                 </li>
                                             </t>

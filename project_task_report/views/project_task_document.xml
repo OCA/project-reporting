@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <template id="task_report_document">
         <h2 class="mt-5 pt-5 text-center">
-            <span t-esc="o.project_id and o.project_id.label_tasks or 'Task'" />:
+            <span t-out="o.project_id and o.project_id.label_tasks or 'Task'" />:
             <span t-field="o.name" />
         </h2>
 
@@ -22,7 +22,7 @@
                     <strong class="m-2">Assigned to</strong>
                 </th>
                 <td>
-                    <span t-esc="', '.join(o.user_ids.mapped('name'))" />
+                    <span t-out="', '.join(o.user_ids.mapped('name'))" />
                 </td>
             </tr>
             <tr t-if="o.date_deadline">
