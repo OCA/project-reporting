@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="task_chatter_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-call="project_task_report.task_report_document" />
+
+                        <h3 class="text-center">Chatter</h3>
+                        <table>
+                            <t t-foreach="o.message_ids" t-as="msg">
+                                <tr>
+                                    <td class="fw-bold">
+                                        <p class="m-2 mb-0" t-field="msg.author_id" />
+                                        <small class="ps-3">
+                                            (<span t-field="msg.date" />)
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <t t-if="msg.subject">
+                                            <span
+                                            class="m-2 me-0"
+                                            t-esc="msg.subject"
+                                        />:
+                                        </t>
+                                        <t t-if="msg.message_type == 'notification'">
+                                            <p
+                                                class="m-2 mb-0"
+                                                t-field="msg.subtype_id.name"
+                                            />
+                                            <t
+                                                t-foreach="msg.sudo().tracking_value_ids"
+                                                t-as="value"
+                                            >
+                                                <li class="ps-3">
+                                                    <span
+                                                    t-esc="value.field_id.field_description"
+                                                />:
+                                                    <span
+                                                    t-esc="value.new_value_char"
+                                                />
+                                                </li>
+                                            </t>
+                                        </t>
+                                        <div class="ps-3">
+                                            <span t-field="msg.body" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="report_project_task_chatter_action" model="ir.actions.report">
+        <field name="name">Print Task and Chatter</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">project_task_report.task_chatter_report</field>
+        <field name="report_file">project_task_report.task_chatter_report</field>
+        <field
+            name="print_report_name"
+        >'Task #%s - %s' % (object.id, object.name)</field>
+        <field name="binding_model_id" ref="project.model_project_task" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
