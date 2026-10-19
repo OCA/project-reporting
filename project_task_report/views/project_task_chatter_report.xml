@@ -31,19 +31,6 @@
                                                 class="m-2 mb-0"
                                                 t-field="msg.subtype_id.name"
                                             />
-                                            <t
-                                                t-foreach="msg.sudo().tracking_value_ids"
-                                                t-as="value"
-                                            >
-                                                <li class="ps-3">
-                                                    <span
-                                                    t-out="value.field_id.field_description"
-                                                />:
-                                                    <span
-                                                    t-out="value.new_value_char"
-                                                />
-                                                </li>
-                                            </t>
                                         </t>
                                         <div class="ps-3">
                                             <span t-field="msg.body" />
@@ -63,7 +50,6 @@
         <field name="model">project.task</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">project_task_report.task_chatter_report</field>
-        <field name="report_file">project_task_report.task_chatter_report</field>
         <field
             name="print_report_name"
         >'Task #%s - %s' % (object.id, object.name)</field>
